@@ -10,7 +10,7 @@ package org.grails.plugin.hibernate.filter
 public class DefaultHibernateFiltersHolder {
     static List defaultFilters = []
 
-    static void addFilter(String name) {
+    static void addDefaultFilter(String name) {
         defaultFilters << name
     }
 }

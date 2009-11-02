@@ -52,7 +52,7 @@ public class HibernateFilterBuilder {
 
         // TODO: may be able to refactor this so that the factory creates the session with the filters rather than enabling them on each request
         if(options.default) {
-            DefaultHibernateFiltersHolder.addFilter(name)
+            DefaultHibernateFiltersHolder.addDefaultFilter(name)
         }
     }
 }
