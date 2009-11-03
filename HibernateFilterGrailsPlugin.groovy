@@ -55,18 +55,35 @@ Integrates Hibernate filtering into Grails
     }
 
     def addMethods(clazz, ctx) {
+
         clazz.metaClass.withHibernateFilter = {name, closure ->
-            ctx.sessionFactory.currentSession.enableFilter(name)
-            def ret = closure.doCall()
-            ctx.sessionFactory.currentSession.disableFilter(name)
-            return ret
+            def session = ctx.sessionFactory.currentSession
+            def isFilterDisabled = session.getEnabledFilter(name) == null
+            try {
+                session.enableFilter(name)
+                closure.doCall()
+            } catch (e) {
+                throw e
+            } finally {
+                if(isFilterDisabled) {
+                    session.disableFilter(name)
+                }
+            }
         }
 
         clazz.metaClass.withoutHibernateFilter = {name, closure ->
-            ctx.sessionFactory.currentSession.disableFilter(name)
-            def ret = closure.doCall()
-            ctx.sessionFactory.currentSession.enableFilter(name)
-            return ret
+            def session = ctx.sessionFactory.currentSession
+            def isFilterEnabled = session.getEnabledFilter(name) != null
+            try {
+                session.disableFilter(name)
+                closure.doCall()
+            } catch (e) {
+                throw e
+            } finally {
+                if (isFilterEnabled) {
+                    session.enableFilter(name)
+                }
+            }
         }
 
         clazz.metaClass.enableHibernateFilter = {name ->
