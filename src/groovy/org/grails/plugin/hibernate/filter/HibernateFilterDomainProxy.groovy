@@ -18,7 +18,7 @@ public class HibernateFilterDomainProxy {
 
             def method = domainClass.metaClass.pickMethod(name, args.collect{it.getClass()} as Class[])
             if(!method) {
-                domainClass.methodMissing(name, args)
+                domainClass.metaClass.invokeStaticMethod(domainClass, name, args)
             } else {
                 method.invoke(domainClass, args)
             }
