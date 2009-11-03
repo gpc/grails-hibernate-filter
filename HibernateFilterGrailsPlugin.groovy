@@ -12,7 +12,7 @@ class HibernateFilterGrailsPlugin {
 
     def dependsOn = [controllers: '1.1.1 > *', hibernate: '1.1.1 > *']
 
-    def loadAfter = ['controllers']
+    def loadAfter = ['controllers', 'hibernate']
     def observe = ['controllers']
 
     // TODO Fill in these fields

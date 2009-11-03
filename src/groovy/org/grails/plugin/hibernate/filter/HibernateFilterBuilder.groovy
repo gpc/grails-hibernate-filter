@@ -2,6 +2,7 @@ package org.grails.plugin.hibernate.filter
 
 import org.codehaus.groovy.grails.commons.GrailsClass
 import org.hibernate.engine.FilterDefinition
+import org.codehaus.groovy.grails.commons.ApplicationHolder as AH
 
 
 /**
@@ -41,18 +42,28 @@ public class HibernateFilterBuilder {
         // Use supplied condition if there is one, otherwise take the condition that is already part of the named filter
         def condition = options.condition ? options.condition : configuration.getFilterDefinitions().get(name).getDefaultFilterCondition();
 
-        // If this is a collection, add the filter to the collection, else add the condition to the base class
-        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.getName())
 
-        // Don't add a filter definition twice
+        // Don't add a filter definition twice - if it is not added already, create the filter
         if(!configuration.getFilterDefinitions().get(name)) {
             configuration.addFilterDefinition(new FilterDefinition(name, condition, [:]))
         }
+
+        // If this is a collection, add the filter to the collection, else add the condition to the base class
+        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.getName())
+
+        // now add the filter to the class or collection
         entity.addFilter(name, condition);
+
 
         // TODO: may be able to refactor this so that the factory creates the session with the filters rather than enabling them on each request
         if(options.default) {
             DefaultHibernateFiltersHolder.addDefaultFilter(name)
+        }
+
+        if(options.aliasDomain) {
+            AH.application.allArtefacts.each { clazz ->
+                clazz.metaClass."${options.aliasDomain}" = new HibernateFilterDomainProxy(domainClass, options.aliasDomain, name)
+            }
         }
     }
 }
