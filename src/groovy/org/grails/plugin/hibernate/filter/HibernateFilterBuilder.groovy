@@ -60,10 +60,9 @@ public class HibernateFilterBuilder {
             DefaultHibernateFiltersHolder.addDefaultFilter(name)
         }
 
+        // store any domain alias proxies to be injected later
         if(options.aliasDomain) {
-            AH.application.allArtefacts.each { clazz ->
-                clazz.metaClass."${options.aliasDomain}" = new HibernateFilterDomainProxy(domainClass, options.aliasDomain, name)
-            }
+            DefaultHibernateFiltersHolder.addDomainAliasProxy(new HibernateFilterDomainProxy(domainClass, options.aliasDomain, name))
         }
     }
 }

@@ -1,4 +1,5 @@
 import org.codehaus.groovy.grails.commons.ApplicationHolder
+import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
 
 class HibernateFilterGrailsPlugin {
     // the plugin version
@@ -41,17 +42,25 @@ Integrates Hibernate filtering into Grails
     def doWithDynamicMethods = {ctx ->
         application.allArtefacts.each {artefact ->
             addMethods(artefact, ctx)
+            addDomainProxies(artefact)
         }
     }
 
     def onChange = {event ->
         def clazz = application.getControllerClass(event.source?.name)
         addMethods(clazz, application.mainContext)
+        addDomainProxies(clazz)
     }
 
     def onConfigChange = {event ->
         // TODO Implement code that is executed when the project configuration changes.
         // The event is the same as for 'onChange'.
+    }
+
+    private addDomainProxies(clazz) {
+        DefaultHibernateFiltersHolder.domainAliasProxies.each {proxy ->
+            clazz.metaClass."${proxy.aliasName}" = proxy
+        }
     }
 
     def addMethods(clazz, ctx) {

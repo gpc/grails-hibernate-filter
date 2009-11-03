@@ -8,9 +8,14 @@ package org.grails.plugin.hibernate.filter
  */
 
 public class DefaultHibernateFiltersHolder {
-    static List defaultFilters = []
+    final static List defaultFilters = []
+    final static List domainAliasProxies = []
 
     static void addDefaultFilter(String name) {
         defaultFilters << name
+    }
+
+    static void addDomainAliasProxy(HibernateFilterDomainProxy proxy) {
+        domainAliasProxies << proxy
     }
 }
