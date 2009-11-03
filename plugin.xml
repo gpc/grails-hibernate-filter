@@ -7,9 +7,9 @@ Integrates Hibernate filtering into Grails
 </description>
   <documentation>http://grails.org/HibernateFilter+Plugin</documentation>
   <resources>
+    <resource>UrlMappings</resource>
     <resource>DataSource</resource>
     <resource>HibernateFilterFilters</resource>
-    <resource>UrlMappings</resource>
   </resources>
   <dependencies>
     <plugin name='controllers' version='1.1.1 &gt; *' />

@@ -49,7 +49,7 @@ public class HibernateFilterBuilder {
         }
 
         // If this is a collection, add the filter to the collection, else add the condition to the base class
-        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.name)
+        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.fullName)
 
         // now add the filter to the class or collection
         entity.addFilter(name, condition);
