@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module relativePaths="true" type="JAVA_MODULE" version="4">
+<module relativePaths="true" type="GRAILS_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Groovy" name="Groovy/Grails">
+      <configuration />
+    </facet>
+    <facet type="Grails" name="Grails">
       <configuration />
     </facet>
   </component>
@@ -32,6 +35,7 @@
       </library>
     </orderEntry>
     <orderEntry type="module" module-name="HibernateFilter-grailsPlugins" />
+    <orderEntry type="library" name="grails-1.1.1" level="application" />
   </component>
 </module>
 
