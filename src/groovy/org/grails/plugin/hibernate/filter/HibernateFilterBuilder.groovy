@@ -49,7 +49,7 @@ public class HibernateFilterBuilder {
         }
 
         // If this is a collection, add the filter to the collection, else add the condition to the base class
-        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.getName())
+        def entity = options.collection ? configuration.getCollectionMapping("${domainClass.name}.${options.collection}") : configuration.getClassMapping(domainClass.name)
 
         // now add the filter to the class or collection
         entity.addFilter(name, condition);
@@ -62,7 +62,7 @@ public class HibernateFilterBuilder {
 
         // store any domain alias proxies to be injected later
         if(options.aliasDomain) {
-            DefaultHibernateFiltersHolder.addDomainAliasProxy(new HibernateFilterDomainProxy(domainClass, options.aliasDomain, name))
+            DefaultHibernateFiltersHolder.addDomainAliasProxy(new HibernateFilterDomainProxy(domainClass.reference.wrappedInstance, options.aliasDomain, name))
         }
     }
 }

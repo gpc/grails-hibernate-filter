@@ -14,14 +14,19 @@ public class HibernateFilterDomainProxy {
     }
 
     def methodMissing(String name, args) {
-        domainClass.newInstance().withHibernateFilter(filterName) {
-            def method = domainClass.metaClass.pickMethod(name, args as Class[])
-            method.invoke(domainClass, args)
+        domainClass.withHibernateFilter(filterName) {
+
+            def method = domainClass.metaClass.pickMethod(name, args.collect{it.getClass()} as Class[])
+            if(!method) {
+                domainClass.methodMissing(name, args)
+            } else {
+                method.invoke(domainClass, args)
+            }
         }
     }
 
     String toString() {
-        "${this.class.simpleName}: alias=${aliasName}, domain=${domainClass}"
+        "${this.class.simpleName}: alias=${aliasName}, domain=${domainClass.simpleName}"
     }
 
 
