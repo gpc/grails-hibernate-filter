@@ -12,7 +12,7 @@ Integrates Hibernate filtering into Grails
     <resource>HibernateFilterFilters</resource>
   </resources>
   <dependencies>
-    <plugin name='controllers' version='1.1.1 &gt; *' />
-    <plugin name='hibernate' version='1.1.1 &gt; *' />
+    <plugin name='controllers' version='1.1.1' />
+    <plugin name='hibernate' version='1.1.1' />
   </dependencies>
 </plugin>

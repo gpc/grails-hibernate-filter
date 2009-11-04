@@ -6,16 +6,8 @@ class HibernateFilterFilters {
         all(controller:'*', action:'*') {
             before = {
                 def session = grailsApplication.mainContext.sessionFactory.currentSession
-
                 DefaultHibernateFiltersHolder.defaultFilters.each {name ->
                     session.enableFilter(name)
-                }
-
-                DefaultHibernateFiltersHolder.defaultFilterCallbacks.each {name, closure ->
-                    if(closure.doCall(grailsApplication)) {
-println "ENABLING FILTER: ${name}"                        
-                        session.enableFilter(name)                        
-                    }
                 }
             }
             after = {

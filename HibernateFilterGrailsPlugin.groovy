@@ -1,5 +1,6 @@
 import org.codehaus.groovy.grails.commons.ApplicationHolder
 import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
+import grails.util.GrailsUtil
 
 class HibernateFilterGrailsPlugin {
     // the plugin version
@@ -11,7 +12,7 @@ class HibernateFilterGrailsPlugin {
             "grails-app/views/error.gsp"
     ]
 
-    def dependsOn = [controllers: '1.1.1 > *', hibernate: '1.1.1 > *']
+    def dependsOn = [controllers: GrailsUtil.grailsVersion, hibernate: GrailsUtil.grailsVersion]
 
     def loadAfter = ['controllers', 'hibernate']
     def observe = ['controllers']
