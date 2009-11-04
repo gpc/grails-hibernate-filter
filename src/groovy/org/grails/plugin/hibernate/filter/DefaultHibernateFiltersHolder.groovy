@@ -10,6 +10,7 @@ package org.grails.plugin.hibernate.filter
 public class DefaultHibernateFiltersHolder {
     final static List defaultFilters = []
     final static List domainAliasProxies = []
+    final static Map defaultFilterCallbacks = [:]
 
     static void addDefaultFilter(String name) {
         defaultFilters << name
@@ -17,5 +18,9 @@ public class DefaultHibernateFiltersHolder {
 
     static void addDomainAliasProxy(HibernateFilterDomainProxy proxy) {
         domainAliasProxies << proxy
+    }
+
+    static void addDefaultFilterCallback(String name, Closure closure) {
+        defaultFilterCallbacks[name] = closure        
     }
 }

@@ -57,7 +57,11 @@ public class HibernateFilterBuilder {
 
         // TODO: may be able to refactor this so that the factory creates the session with the filters rather than enabling them on each request
         if(options.default) {
-            DefaultHibernateFiltersHolder.addDefaultFilter(name)
+            if(options.default instanceof Closure) {
+                DefaultHibernateFiltersHolder.addDefaultFilterCallback(name, options.default)
+            } else {
+                DefaultHibernateFiltersHolder.addDefaultFilter(name)
+            }
         }
 
         // store any domain alias proxies to be injected later
