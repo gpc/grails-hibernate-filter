@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="GRAILS_MODULE" version="4">
   <component name="FacetManager">
-    <facet type="Groovy" name="Groovy/Grails">
-      <configuration />
-    </facet>
     <facet type="Grails" name="Grails">
       <configuration />
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../.grails/1.1.1/projects/HibernateFilter/plugins" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/grails-app/conf/hibernate" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/grails-app/controllers" isTestSource="false" />
@@ -28,9 +26,11 @@
       <library name="Grails User Library">
         <CLASSES>
           <root url="file://$MODULE_DIR$/lib" />
+          <root url="file://$MODULE_DIR$/../../../../.grails/1.1.1/projects/HibernateFilter/plugins/hibernate-1.1.1/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../../../../.grails/1.1.1/projects/HibernateFilter/plugins/hibernate-1.1.1/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
