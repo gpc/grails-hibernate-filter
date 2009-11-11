@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module relativePaths="true" type="GRAILS_MODULE" version="4">
   <component name="FacetManager">
+    <facet type="Groovy" name="Groovy/Grails">
+      <configuration />
+    </facet>
+    <facet type="Grails" name="Grails">
+      <configuration />
+    </facet>
     <facet type="Grails" name="Grails">
       <configuration />
     </facet>
