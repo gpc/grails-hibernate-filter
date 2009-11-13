@@ -1,4 +1,4 @@
-<plugin name='hibernate-filter' version='0.1.3' grailsVersion='1.1.1 &gt; *'>
+<plugin name='hibernate-filter' version='0.1.4' grailsVersion='1.1 &gt; *'>
   <author>Scott Burch</author>
   <authorEmail>scott@bulldoginfo.com</authorEmail>
   <title>Integrates Hibernate filtering into Grails</title>
@@ -12,7 +12,7 @@ Integrates Hibernate filtering into Grails
     <resource>UrlMappings</resource>
   </resources>
   <dependencies>
-    <plugin name='controllers' version='1.1.1' />
-    <plugin name='hibernate' version='1.1.1' />
+    <plugin name='controllers' version='1.1 &gt; *' />
+    <plugin name='hibernate' version='0.1 &gt; *' />
   </dependencies>
 </plugin>

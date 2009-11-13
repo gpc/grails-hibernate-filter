@@ -4,15 +4,15 @@ import grails.util.GrailsUtil
 
 class HibernateFilterGrailsPlugin {
     // the plugin version
-    def version = "0.1.3"
+    def version = "0.1.4"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.1.1 > *"
+    def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
     def pluginExcludes = [
             "grails-app/views/error.gsp"
     ]
 
-    def dependsOn = [controllers: GrailsUtil.grailsVersion, hibernate: GrailsUtil.grailsVersion]
+    def dependsOn = [controllers: '1.1 > *' , hibernate: '0.1 > *']
 
     def loadAfter = ['controllers', 'hibernate']
     def observe = ['controllers']

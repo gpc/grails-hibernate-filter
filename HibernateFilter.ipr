@@ -34,6 +34,15 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="FacetAutodetectingManager">
+    <autodetection-disabled>
+      <facet-type id="Groovy">
+        <modules>
+          <module name="HibernateFilter-grailsPlugins" />
+        </modules>
+      </facet-type>
+    </autodetection-disabled>
+  </component>
   <component name="InspectionProjectProfileManager">
     <option name="PROJECT_PROFILE" value="Project Default" />
     <option name="USE_PROJECT_PROFILE" value="true" />
@@ -75,6 +84,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HibernateFilter.iml" filepath="$PROJECT_DIR$/HibernateFilter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HibernateFilter-grailsPlugins.iml" filepath="$PROJECT_DIR$/HibernateFilter-grailsPlugins.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
