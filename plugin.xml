@@ -1,4 +1,4 @@
-<plugin name='hibernate-filter' version='0.1.5' grailsVersion='1.1 &gt; *'>
+<plugin name='hibernate-filter' version='0.1.6' grailsVersion='1.1 &gt; *'>
   <author>Scott Burch</author>
   <authorEmail>scott@bulldoginfo.com</authorEmail>
   <title>Integrates Hibernate filtering into Grails</title>

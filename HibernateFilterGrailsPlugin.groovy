@@ -4,7 +4,7 @@ import grails.util.GrailsUtil
 
 class HibernateFilterGrailsPlugin {
     // the plugin version
-    def version = "0.1.5"
+    def version = "0.1.6"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
@@ -51,8 +51,9 @@ Integrates Hibernate filtering into Grails
     }
 
     def onChange = {event ->
-        def clazz = application.getClassForName(event.source?.name)
-        addDomainProxies(clazz)
+        if(event?.source) {
+            addDomainProxies(event.source)
+        }
     }
 
     def onConfigChange = {event ->
@@ -61,13 +62,13 @@ Integrates Hibernate filtering into Grails
     }
 
     private addDomainProxies(clazz) {
+
         DefaultHibernateFiltersHolder.domainAliasProxies.each {proxy ->
             clazz.metaClass."${proxy.aliasName}" = proxy
         }
     }
 
     def addMethods(clazz, ctx) {
-
         clazz.metaClass.'static'.withHibernateFilter = {name, closure ->
             def session = ctx.sessionFactory.currentSession
             def isFilterDisabled = session.getEnabledFilter(name) == null
