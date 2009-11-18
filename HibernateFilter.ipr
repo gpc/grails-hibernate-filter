@@ -94,6 +94,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/HibernateFilter.iml" filepath="$PROJECT_DIR$/HibernateFilter.iml" />
       <module fileurl="file://$PROJECT_DIR$/HibernateFilter-grailsPlugins.iml" filepath="$PROJECT_DIR$/HibernateFilter-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tests/HibernateFilterTest/HibernateFilterTest.iml" filepath="$PROJECT_DIR$/../../tests/HibernateFilterTest/HibernateFilterTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../tests/HibernateFilterTest/HibernateFilterTest-grailsPlugins.iml" filepath="$PROJECT_DIR$/../../tests/HibernateFilterTest/HibernateFilterTest-grailsPlugins.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">

@@ -4,7 +4,7 @@ import grails.util.GrailsUtil
 
 class HibernateFilterGrailsPlugin {
     // the plugin version
-    def version = "0.1.4"
+    def version = "0.1.5"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
@@ -12,7 +12,8 @@ class HibernateFilterGrailsPlugin {
             "grails-app/views/error.gsp"
     ]
 
-    def dependsOn = [controllers: '1.1 > *' , hibernate: '0.1 > *']
+    // removed after issues with dependencies
+//    def dependsOn = [controllers: '1.1 > *' , hibernate: '0.1 > *']
 
     def loadAfter = ['controllers', 'hibernate']
     def observe = ['controllers']
@@ -41,15 +42,16 @@ Integrates Hibernate filtering into Grails
     }
 
     def doWithDynamicMethods = {ctx ->
-        application.allArtefacts.each {artefact ->
+        application.DomainClasses.each {artefact ->
             addMethods(artefact, ctx)
+        }
+        application.allArtefacts.each {artefact ->
             addDomainProxies(artefact)
         }
     }
 
     def onChange = {event ->
-        def clazz = application.getControllerClass(event.source?.name)
-        addMethods(clazz, application.mainContext)
+        def clazz = application.getClassForName(event.source?.name)
         addDomainProxies(clazz)
     }
 
@@ -66,7 +68,7 @@ Integrates Hibernate filtering into Grails
 
     def addMethods(clazz, ctx) {
 
-        clazz.metaClass.withHibernateFilter = {name, closure ->
+        clazz.metaClass.'static'.withHibernateFilter = {name, closure ->
             def session = ctx.sessionFactory.currentSession
             def isFilterDisabled = session.getEnabledFilter(name) == null
             try {
@@ -81,7 +83,7 @@ Integrates Hibernate filtering into Grails
             }
         }
 
-        clazz.metaClass.withoutHibernateFilter = {name, closure ->
+        clazz.metaClass.'static'.withoutHibernateFilter = {name, closure ->
             def session = ctx.sessionFactory.currentSession
             def isFilterEnabled = session.getEnabledFilter(name) != null
             try {
@@ -96,11 +98,11 @@ Integrates Hibernate filtering into Grails
             }
         }
 
-        clazz.metaClass.enableHibernateFilter = {name ->
+        clazz.metaClass.'static'.enableHibernateFilter = {name ->
             ctx.sessionFactory.currentSession.enableFilter(name)
         }
 
-        clazz.metaClass.disableHibernateFilter = {name ->
+        clazz.metaClass.'static'.disableHibernateFilter = {name ->
             ctx.sessionFactory.currentSession.disableFilter(name)
         }
     }
