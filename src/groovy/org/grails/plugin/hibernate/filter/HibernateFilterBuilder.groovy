@@ -41,11 +41,21 @@ public class HibernateFilterBuilder {
     private void addFilter(String name, Map options) {
         // Use supplied condition if there is one, otherwise take the condition that is already part of the named filter
         def condition = options.condition ? options.condition : configuration.getFilterDefinitions().get(name).getDefaultFilterCondition();
-
+	// for condition with parameter
+        def paramTypes = options.types?.tokenize(',') as String [] 
+	//println 'types : '+paramTypes
 
         // Don't add a filter definition twice - if it is not added already, create the filter
         if(!configuration.getFilterDefinitions().get(name)) {
-            configuration.addFilterDefinition(new FilterDefinition(name, condition, [:]))
+		def paramsMap=[:]
+		def params = org.apache.commons.lang.StringUtils.substringsBetween(condition,':','=')?.toList()
+		params.eachWithIndex { it, i ->
+			//println 'type ->'+i+' '+org.hibernate.type.TypeFactory.basic( paramTypes[i] )
+			paramsMap[it.trim()]= org.hibernate.type.TypeFactory.basic(paramTypes[i]);
+		}
+		//println paramsMap
+
+            configuration.addFilterDefinition(new FilterDefinition(name, condition, paramsMap))
         }
 
         // If this is a collection, add the filter to the collection, else add the condition to the base class
