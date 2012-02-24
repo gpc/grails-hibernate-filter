@@ -1,5 +1,0 @@
-DefaultPackage
-grails-app.conf
-scripts
-src.groovy.org.grails.plugin.hibernate.filter
-test.unit
