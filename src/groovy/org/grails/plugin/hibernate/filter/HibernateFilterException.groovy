@@ -1,8 +1,11 @@
 package org.grails.plugin.hibernate.filter
 
-class HibernateFilterException extends Exception {
+/**
+ * Thrown if there is a misconfiguration in a hibernateFilters block.
+ */
+class HibernateFilterException extends RuntimeException {
 
-    public HibernateFilterException(String message) {
-        super(message)
-    }
+	HibernateFilterException(String message) {
+		super(message)
+	}
 }

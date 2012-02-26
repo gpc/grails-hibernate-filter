@@ -2,21 +2,16 @@ import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
 
 class HibernateFilterFilters {
 
-    def filters = {
-        all(controller:'*', action:'*') {
-            before = {
-                def session = grailsApplication.mainContext.sessionFactory.currentSession
-                DefaultHibernateFiltersHolder.defaultFilters.each {name ->
-                    session.enableFilter(name)
-                }
-            }
-            after = {
-                
-            }
-            afterView = {
-                
-            }
-        }
-    }
-    
+	def sessionFactory
+
+	def filters = {
+		enableHibernateFilters(controller:'*', action:'*') {
+			before = {
+				def session = sessionFactory.currentSession
+				for (String name in DefaultHibernateFiltersHolder.defaultFilters) {
+					session.enableFilter name
+				}
+			}
+		}
+	}
 }

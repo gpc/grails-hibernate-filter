@@ -1,26 +1,23 @@
 package org.grails.plugin.hibernate.filter
+
 /**
- * Created by IntelliJ IDEA.
- * User: scott
- * Date: Nov 1, 2009
- * Time: 12:03:00 PM
- * To change this template use File | Settings | File Templates.
+ * Used by HibernateFilterBuilder to store information from hibernateFilters blocks.
  */
+class DefaultHibernateFiltersHolder {
 
-public class DefaultHibernateFiltersHolder {
-    final static List defaultFilters = []
-    final static List domainAliasProxies = []
-    final static Map defaultFilterCallbacks = [:]
+	static final List<String> defaultFilters = []
+	static final List<HibernateFilterDomainProxy> domainAliasProxies = []
+	static final Map<String, Closure> defaultFilterCallbacks = [:]
 
-    static void addDefaultFilter(String name) {
-        defaultFilters << name
-    }
+	static void addDefaultFilter(String name) {
+		defaultFilters << name
+	}
 
-    static void addDomainAliasProxy(HibernateFilterDomainProxy proxy) {
-        domainAliasProxies << proxy
-    }
+	static void addDomainAliasProxy(HibernateFilterDomainProxy proxy) {
+		domainAliasProxies << proxy
+	}
 
-    static void addDefaultFilterCallback(String name, Closure closure) {
-        defaultFilterCallbacks[name] = closure        
-    }
+	static void addDefaultFilterCallback(String name, Closure closure) {
+		defaultFilterCallbacks[name] = closure
+	}
 }
