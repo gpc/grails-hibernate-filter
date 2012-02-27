@@ -2,7 +2,6 @@ package org.grails.plugin.hibernate.filter
 
 import grails.util.Metadata
 
-import org.apache.commons.lang.StringUtils
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Mappings
 import org.hibernate.engine.FilterDefinition
@@ -57,11 +56,12 @@ class HibernateFilterBuilder {
 		// Don't add a filter definition twice - if it is not added already, create the filter
 		if (!configuration.getFilterDefinitions().get(name)) {
 			def paramsMap = [:]
-			StringUtils.substringsBetween(condition, ':', '=').eachWithIndex { String param, int i ->
-				def type = grails1 ?
-					TypeFactory.basic(paramTypes[i]) :
-					mappings.getTypeResolver().basic(paramTypes[i])
-				paramsMap[param.trim()] = type
+			def matcher = condition =~ /:(\w+)/
+			matcher.eachWithIndex { match, int i ->
+				String paramName = match[1]
+				String typeName = paramTypes[i].trim()
+				def type = grails1 ? TypeFactory.basic(typeName) : mappings.getTypeResolver().basic(typeName)
+				paramsMap[paramName.trim()] = type
 			}
 
 			configuration.addFilterDefinition new FilterDefinition(name, condition, paramsMap)
