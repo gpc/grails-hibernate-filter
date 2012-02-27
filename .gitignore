@@ -1,0 +1,8 @@
+/.settings
+/target/
+*.iws
+.log
+*.zip
+plugin.xml
+.DS_Store
+
