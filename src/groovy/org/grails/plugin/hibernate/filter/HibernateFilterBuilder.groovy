@@ -3,7 +3,7 @@ package org.grails.plugin.hibernate.filter
 import grails.util.Metadata
 
 import org.apache.commons.lang.StringUtils
-import org.codehaus.groovy.grails.commons.GrailsClass
+import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Mappings
 import org.hibernate.engine.FilterDefinition
 import org.hibernate.type.TypeFactory
@@ -11,7 +11,7 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
- * Add the filters from the domain closure
+ * Add the filters from the domain closure.
  */
 class HibernateFilterBuilder {
 
@@ -20,9 +20,9 @@ class HibernateFilterBuilder {
 	private Mappings mappings
 
 	HibernateFilterDomainConfiguration configuration
-	GrailsClass domainClass
+	GrailsDomainClass domainClass
 
-	HibernateFilterBuilder(HibernateFilterDomainConfiguration configuration, GrailsClass domainClass) {
+	HibernateFilterBuilder(HibernateFilterDomainConfiguration configuration, GrailsDomainClass domainClass) {
 		this.configuration = configuration
 		this.domainClass = domainClass
 		mappings = configuration.createMappings()
@@ -35,23 +35,24 @@ class HibernateFilterBuilder {
 
 	def methodMissing(String name, args) {
 		args = [name] + args.collect { it }
-		def filterMethod = metaClass.getMetaMethod('addFilter', args.collect{it.getClass()} as Object[])
+		def filterMethod = metaClass.getMetaMethod('addFilter', args.collect { it.getClass() } as Object[])
 		if (filterMethod) {
 			return filterMethod.invoke(this, args as Object[])
 		}
 
 		throw new HibernateFilterException(
-			"Invalid arguments in hibernateFilters closure [class:${domainClass.name}, name:${name}]")
+			"Invalid arguments in hibernateFilters closure [class:$domainClass.name, name:$name]")
 	}
 
 	// Add a previously registered filter
 	private void addFilter(String name, Map options = [:]) {
-		// Use supplied condition if there is one, otherwise take the condition that is already part of the named filter
+		// Use supplied condition if there is one, otherwise take the condition
+		// that is already part of the named filter
 		String condition = options.condition ?:
-			configuration.getFilterDefinitions().get(name).getDefaultFilterCondition()
+			configuration.filterDefinitions[name].defaultFilterCondition
 
 		// for condition with parameter
-		String[] paramTypes = options.types?.tokenize(',') as String[]
+		String[] paramTypes = (options.types ?: options.paramTypes ?: '').tokenize(',') as String[]
 
 		// Don't add a filter definition twice - if it is not added already, create the filter
 		if (!configuration.getFilterDefinitions().get(name)) {
@@ -66,15 +67,17 @@ class HibernateFilterBuilder {
 			configuration.addFilterDefinition new FilterDefinition(name, condition, paramsMap)
 		}
 
-		// If this is a collection, add the filter to the collection, else add the condition to the base class
+		// If this is a collection, add the filter to the collection,
+		// else add the condition to the base class
 		def entity = options.collection ?
-			configuration.getCollectionMapping("${domainClass.fullName}.${options.collection}") :
+			configuration.getCollectionMapping("${domainClass.fullName}.$options.collection") :
 			configuration.getClassMapping(domainClass.fullName)
 
 		// now add the filter to the class or collection
 		entity.addFilter name, condition
 
-		// TODO: may be able to refactor this so that the factory creates the session with the filters rather than enabling them on each request
+		// TODO: may be able to refactor this so that the factory creates the
+		// session with the filters rather than enabling them on each request
 		if (options.default) {
 			if (options.default instanceof Closure) {
 				DefaultHibernateFiltersHolder.addDefaultFilterCallback name, options.default

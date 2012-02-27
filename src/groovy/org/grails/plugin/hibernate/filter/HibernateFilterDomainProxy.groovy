@@ -4,27 +4,27 @@ class HibernateFilterDomainProxy {
 
 	String filterName
 	String aliasName
-	def domainClass
+	def domainClassInstance
 
-	HibernateFilterDomainProxy(domainClass, String aliasName, String filterName) {
-		this.domainClass = domainClass
+	HibernateFilterDomainProxy(domainClassInstance, String aliasName, String filterName) {
+		this.domainClassInstance = domainClassInstance
 		this.aliasName = aliasName
 		this.filterName = filterName
 	}
 
 	def methodMissing(String name, args) {
-		domainClass.withHibernateFilter(filterName) {
-			def method = domainClass.metaClass.pickMethod(name, args.collect{it.getClass()} as Class[])
+		domainClassInstance.getClass().withHibernateFilter(filterName) {
+			def method = domainClassInstance.getClass().metaClass.pickMethod(name, args.collect{it.getClass()} as Class[])
 			if (method) {
-				method.invoke(domainClass, args)
+				method.invoke(domainClassInstance, args)
 			}
 			else {
-				domainClass.metaClass.invokeStaticMethod domainClass, name, args
+				domainClassInstance.getClass().metaClass.invokeStaticMethod domainClassInstance, name, args
 			}
 		}
 	}
 
 	String toString() {
-		"${getClass().simpleName}: alias=${aliasName}, domain=${domainClass.getClass().simpleName}"
+		"${getClass().simpleName}: alias=${aliasName}, domain=${domainClassInstance.getClass().simpleName}"
 	}
 }
