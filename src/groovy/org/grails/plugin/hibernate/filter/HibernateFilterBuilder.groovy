@@ -56,14 +56,16 @@ class HibernateFilterBuilder {
 		// Don't add a filter definition twice - if it is not added already, create the filter
 		if (!configuration.getFilterDefinitions().get(name)) {
 			def paramsMap = [:]
+            def counter = 0
 			def matcher = condition =~ /:(\w+)/
-			matcher.eachWithIndex { match, int i ->
+			matcher.each { match ->
 				String paramName = match[1]
-				String typeName = paramTypes[i].trim()
-				def type = grails1 ? TypeFactory.basic(typeName) : mappings.getTypeResolver().basic(typeName)
-				paramsMap[paramName.trim()] = type
-			}
-
+                if(!paramsMap.get(paramName)) {
+                    String typeName = paramTypes[counter++].trim()
+				    def type = grails1 ? TypeFactory.basic(typeName) : mappings.getTypeResolver().basic(typeName)
+				    paramsMap[paramName.trim()] = type
+                }
+            }
 			configuration.addFilterDefinition new FilterDefinition(name, condition, paramsMap)
 		}
 

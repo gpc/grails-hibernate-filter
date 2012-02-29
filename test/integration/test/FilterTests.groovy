@@ -36,4 +36,5 @@ class FilterTests extends GroovyTestCase {
 			}
 		}
 	}
+
 }
