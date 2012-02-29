@@ -36,4 +36,24 @@ class FilterTests extends GroovyTestCase {
 			}
 		}
 	}
+
+    void testFilterWithMultiUseParams() {
+        int enabledCount = Foo.countByEnabled(true)
+
+
+
+
+        Foo.withHibernateFilters {
+            def foos = Foo.list()
+            assertEquals enabledCount, foos.size()
+
+            for (Foo foo in foos) {
+                assertTrue foo.enabled
+                for (Bar bar in foo.bars) {
+                    assertTrue bar.enabled
+                }
+            }
+        }
+    }
+
 }
