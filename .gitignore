@@ -1,8 +1,8 @@
 /.settings
 /target/
 *.iws
-.log
+*.log
 *.zip
 plugin.xml
 .DS_Store
-
+/web-app/
