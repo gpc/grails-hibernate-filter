@@ -75,12 +75,22 @@ class HibernateFilterBuilder {
 			configuration.getCollectionMapping("${domainClass.fullName}.$options.collection") :
 			configuration.getClassMapping(domainClass.fullName)
 
-        if (entity == null && !domainClass.isRoot()) {
-            // No matching entity found and domain class is a subclass.
-            // Filter will be added when found.
-            // TODO: Log a warning since the collection name might have been a typo
-            return
-        }
+		if (entity == null) {
+			if (options.collection && !domainClass.isRoot()) {
+				def clazz = domainClass.clazz.superclass
+				while (clazz != Object && !entity) {
+					entity = configuration.getCollectionMapping("${clazz.name}.$options.collection")
+				}
+				if (!entity) {
+					log.warn "Collection $options.collection not found in $domainClass.fullName or any superclass"
+					return
+				}
+			}
+			else {
+				log.warn "Entity not found for filter definition $options"
+				return
+			}
+		}
 
 		// now add the filter to the class or collection
 		entity.addFilter name, condition
