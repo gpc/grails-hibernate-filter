@@ -107,7 +107,7 @@ class HibernateFilterBuilder {
 		}
 
 		// store any domain alias proxies to be injected later
-		if (options.aliasDomain) {
+		if (options.aliasDomain && domainClass.isRoot()) {
 			DefaultHibernateFiltersHolder.addDomainAliasProxy(
 				new HibernateFilterDomainProxy(domainClass.reference.wrappedInstance, options.aliasDomain, name))
 		}

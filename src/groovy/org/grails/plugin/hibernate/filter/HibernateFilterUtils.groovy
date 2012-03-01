@@ -20,7 +20,7 @@ class HibernateFilterUtils {
 	 */
 	static void addDomainProxies(Class artefactClass) {
 		for (HibernateFilterDomainProxy proxy in DefaultHibernateFiltersHolder.domainAliasProxies) {
-			LOG.debug "Adding proxy {} in class {}", proxy.aliasName, artefactClass.name
+			LOG.debug "Adding proxy {} in class {}", proxy, artefactClass.name
 			artefactClass.metaClass."$proxy.aliasName" = proxy
 		}
 	}

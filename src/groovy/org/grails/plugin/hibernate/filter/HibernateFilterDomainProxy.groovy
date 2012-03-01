@@ -25,6 +25,6 @@ class HibernateFilterDomainProxy {
 	}
 
 	String toString() {
-		"${getClass().simpleName}: alias=${aliasName}, domain=${domainClassInstance.getClass().simpleName}"
+		"${getClass().simpleName}: alias=${aliasName}, domain=${domainClassInstance.getClass().name}"
 	}
 }
