@@ -43,7 +43,7 @@ class HibernateFilterBuilderTests extends GrailsUnitTestCase {
 		assertTrue callback instanceof Closure
 		assertFalse callback()
 
-		assertEquals 4, root.filterMap.size()
+		assertEquals 5, root.filterMap.size()
 		assertEquals 'enabled=1', root.filterMap.fooEnabledFilter
 		assertEquals ':name = name', root.filterMap.fooNameFilter
 		assertEquals 'enabled=1', root.filterMap.closureDefaultFilter
