@@ -20,7 +20,7 @@ class HibernateFilterGrailsPlugin {
 	def developers = [[name: 'Burt Beckwith', email: 'beckwithb@vmware.com'],
 	                  [name: 'Alex Shneyderman', email: 'a.shneyderman@gmail.com']]
 	def issueManagement = [system: 'JIRA', url: 'http://jira.grails.org/browse/GPHIBERNATEFILTER']
-	def scm = [url: 'http://svn.codehaus.org/grails-plugins/grails-hibernate-filter/']
+	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']
 
 	def doWithDynamicMethods = { ctx ->
 		for (GrailsDomainClass dc in application.domainClasses) {
@@ -33,6 +33,9 @@ class HibernateFilterGrailsPlugin {
 	}
 
 	def onChange = { event ->
+
+		if (!(event.source instanceof Class)) return
+		if (!event.application.isArtefact(event.source)) return
 
 		HibernateFilterUtils.addDomainProxies event.source
 
