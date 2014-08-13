@@ -7,7 +7,7 @@ import grails.test.GrailsUnitTestCase
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Configuration.MappingsImpl
-import org.hibernate.engine.FilterDefinition
+import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.mapping.Collection
 import org.hibernate.mapping.PersistentClass
 import org.hibernate.mapping.RootClass
