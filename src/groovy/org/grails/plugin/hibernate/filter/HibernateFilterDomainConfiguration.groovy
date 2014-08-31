@@ -3,7 +3,6 @@ package org.grails.plugin.hibernate.filter
 import org.codehaus.groovy.grails.orm.hibernate.cfg.GrailsAnnotationConfiguration
 import org.codehaus.groovy.grails.commons.GrailsApplication
 import org.hibernate.MappingException
-import org.hibernate.engine.FilterDefinition
 
 class HibernateFilterDomainConfiguration extends GrailsAnnotationConfiguration {
 
