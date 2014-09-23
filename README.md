@@ -21,7 +21,7 @@ Copy the generated plugin zip file to your Grails project's "`lib/`" folder.
 
 ## 3. Add Plugin Dependency
 
-Include the following to your "grails-app/conf/BuildConfig.groovy"'s plugins dependency,
+Include the following in your "`grails-app/conf/BuildConfig.groovy`" file's plugins dependency,
 
     compile ":hibernate-filter:0.3.2.appcela"
     
