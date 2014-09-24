@@ -21,6 +21,8 @@ Copy the generated plugin jar file to your Grails project's "`lib/`" folder.
 
 ## ~~3. Add Plugin Dependency~~
 
-There's no need to add a dependency for this plugin.
+There's no need to add a dependency for this plugin for your Grails project. It should just work.
 
-Then you should be all set.    
+# Usage
+
+Please refer to the official [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) for usage.
