@@ -6,3 +6,7 @@
 plugin.xml
 .DS_Store
 /web-app/
+.idea
+grails-hibernate-filter.iml
+.classpath
+.project
