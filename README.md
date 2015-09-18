@@ -19,6 +19,10 @@ Clone this repo and publish to your local maven repo using:
 Add dependency in build.gradle:
 
     compile "org.grails.plugins:grails-hibernate-filter:<version_number>"
+    
+Configure dataSource in application.yml
+
+    configClass: org.grails.plugin.hibernate.filter.HibernateFilterDomainConfiguration
 
 # Usage
 
