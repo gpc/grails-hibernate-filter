@@ -4,7 +4,7 @@ buildscript {
     }
     repositories {
         mavenLocal()
-        maven {url "http://jcenter.bintray.com"}
+        maven { url "http://jcenter.bintray.com" }
     }
     dependencies {
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
@@ -16,7 +16,7 @@ plugins {
     id "com.jfrog.bintray" version "1.2"
 }
 
-version "0.1.0-SNAPSHOT"
+version "0.1.0"
 group "org.grails.plugins"
 
 apply plugin: 'maven-publish'
@@ -26,8 +26,8 @@ apply plugin: "spring-boot"
 apply plugin: "org.grails.grails-plugin"
 apply plugin: "org.grails.grails-gsp"
 // Used for publishing to central repository, remove if not needed
-apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
-apply from:'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle'
+apply from: 'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/grailsCentralPublishing.gradle'
+apply from: 'https://raw.githubusercontent.com/grails/grails-profile-repository/master/profiles/plugin/templates/bintrayPublishing.gradle'
 
 ext {
     grailsVersion = project.grailsVersion
@@ -42,7 +42,7 @@ repositories {
     mavenLocal()
     mavenCentral()
     maven { url "https://repo.grails.org/grails/core" }
-    maven {url "http://jcenter.bintray.com"}
+    maven { url "http://jcenter.bintray.com" }
 }
 
 dependencyManagement {
@@ -57,7 +57,7 @@ dependencies {
     provided "org.springframework.boot:spring-boot-starter-actuator"
     provided "org.springframework.boot:spring-boot-autoconfigure"
     provided "org.springframework.boot:spring-boot-starter-tomcat"
-	provided "org.grails.plugins:hibernate"
+    provided "org.grails.plugins:hibernate"
 
     provided "org.grails:grails-web-boot"
     provided "org.grails:grails-dependencies"
