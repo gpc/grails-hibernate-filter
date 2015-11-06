@@ -1,4 +1,4 @@
-package domain.test
+package org.grails.plugin.hibernate.filter
 
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback

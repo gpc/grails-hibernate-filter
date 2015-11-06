@@ -1,4 +1,4 @@
-package domain.test
+package org.grails.plugin.hibernate.filter
 
 import org.hibernate.Filter
 import test.Foo

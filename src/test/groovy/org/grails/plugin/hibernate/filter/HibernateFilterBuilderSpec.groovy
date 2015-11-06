@@ -2,7 +2,7 @@ package org.grails.plugin.hibernate.filter
 
 import org.grails.core.DefaultGrailsDomainClass
 import org.hibernate.cfg.Configuration
-import org.hibernate.engine.spi.FilterDefinition
+import org.hibernate.engine.FilterDefinition
 import org.hibernate.mapping.PersistentClass
 import org.hibernate.mapping.RootClass
 import org.hibernate.type.LongType
@@ -52,14 +52,13 @@ class HibernateFilterBuilderSpec extends Specification {
 		fd.parameterTypes.oragnisationId instanceof LongType
 		fd.parameterTypes.organisationIds instanceof LongType
 
-		//FIXME
-//		set.filterMap.size() == 1
-//		set.filterMap.barEnabledFilter == 'enabled=1'
-//
-//		5 == root.filterMap.size()
-//		'enabled=1' == root.filterMap.fooEnabledFilter
-//		':name = name' == root.filterMap.fooNameFilter
-//		'enabled=1' == root.filterMap.closureDefaultFilter
-//		'(organisation_id = :oragnisationId or organisation_id in (:organisationIds))' == root.filterMap.inListFilter
+		set.filterMap.size() == 1
+		set.filterMap.barEnabledFilter == 'enabled=1'
+
+		root.filterMap.size() == 5
+		'enabled=1' == root.filterMap.fooEnabledFilter
+		':name = name' == root.filterMap.fooNameFilter
+		'enabled=1' == root.filterMap.closureDefaultFilter
+		'(organisation_id = :oragnisationId or organisation_id in (:organisationIds))' == root.filterMap.inListFilter
 	}
 }
