@@ -78,3 +78,7 @@ bintray {
         vcsUrl = "https://github.com/piotrchowaniec/$project.name"
     }
 }
+
+jar {   
+	exclude "test/**"
+}
