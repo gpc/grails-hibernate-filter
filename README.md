@@ -27,3 +27,6 @@ Configure dataSource in application.yml
 # Usage
 
 Please refer to the official [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) for usage.
+
+# Continuous integration server
+[![Build Status](https://travis-ci.org/fingo/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/fingo/grails-hibernate-filter)
