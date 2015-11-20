@@ -10,5 +10,8 @@ plugin.xml
 grails-hibernate-filter.iml
 hibernate-filter-plugin/hibernate-filter-plugin.iml
 hibernate-filter-plugin/build
+
+hibernate-filter-example/hibernate-filter-example.iml
+hibernate-filter-example/build
 .classpath
 .project

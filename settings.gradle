@@ -1,1 +1,1 @@
-include 'hibernate-filter-plugin'
+include 'hibernate-filter-plugin', 'hibernate-filter-example'
