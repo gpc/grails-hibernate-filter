@@ -9,5 +9,6 @@ plugin.xml
 .idea
 grails-hibernate-filter.iml
 hibernate-filter-plugin/hibernate-filter-plugin.iml
+hibernate-filter-plugin/build
 .classpath
 .project
