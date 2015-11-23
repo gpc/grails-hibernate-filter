@@ -64,7 +64,7 @@ dependencies {
     testCompile "org.grails:grails-plugin-testing"
 
     console "org.grails:grails-console"
-    compile "org.grails:grails-datastore-gorm-hibernate:4.0.4.RELEASE"
+    compile "org.grails:grails-datastore-gorm-hibernate4:4.0.7.RELEASE"
 }
 
 task wrapper(type: Wrapper) {

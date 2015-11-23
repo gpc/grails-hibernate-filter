@@ -61,7 +61,7 @@ dependencies {
     compile "org.grails.plugins:cache"
     compile "org.hibernate:hibernate-ehcache"
 
-    project(':hibernate-filter-plugin')
+    compile project(':hibernate-filter-plugin')
 
     runtime "org.grails.plugins:asset-pipeline"
     runtime "org.grails.plugins:scaffolding"
