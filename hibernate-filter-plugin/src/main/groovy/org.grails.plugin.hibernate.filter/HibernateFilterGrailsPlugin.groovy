@@ -13,7 +13,7 @@ class HibernateFilterGrailsPlugin extends Plugin
 	def grailsVersion = "3.0.3 > *"
 	def loadAfter = ['controllers', 'hibernate']
 	def observe = ['*']
-	def pluginExcludes = ['test/**']
+	def pluginExcludes = []
 
 	def author = 'Scott Burch'
 	def authorEmail = 'scott@bulldoginfo.com'
