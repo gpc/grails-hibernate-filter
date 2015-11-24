@@ -1,17 +1,13 @@
-/.settings
-/target/
-*.iws
-*.log
-*.zip
-plugin.xml
-.DS_Store
-/web-app/
-.idea
-grails-hibernate-filter.iml
-hibernate-filter-plugin/hibernate-filter-plugin.iml
-hibernate-filter-plugin/build
+#IntelliJ IDEA files
+.idea/
+build/
+*.iml
 
-hibernate-filter-example/hibernate-filter-example.iml
-hibernate-filter-example/build
+# Eclipse files
+target/
+.settings
 .classpath
 .project
+
+#Gradle
+.gradle/
