@@ -1,20 +1,35 @@
 grails-hibernate-filter
 =======================
 
+# Description
 This is a fork of the original [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) 
 created from fork [appcela/grails-hibernate-plugin](https://github.com/appcela/grails-hibernate-filter) 
-to make it work with the Grails 3.
+to make it work with the Grails 3 and Hibernate 4.
 
-# Installation
+This repo contains two projects:
+  
+1.  hibernate-filter-plugin - with plugin code
+1.  hibernate-filter-example - with example application using plugin 
 
-## 1. Build Plugin Zip File
+# Usage
 
-Currently this is no pulbic repo with this artifact so local maven repository should be used.
-Clone this repo and publish to your local maven repo using:
+## Build Plugin File
 
-    ./gradlew publishToMavenLocal
+Clone the repository and execute in main directory command:
+
+    ./gradlew hibernate-filter-plugin:jar
     
-## 2. Install This Plugin
+You can publish it to your maven local repository using:
+
+    ./gradlew hibernate-filter-plugin:publishToMavenLocal
+    
+## Running example application
+
+To run example application use command:
+
+    ./gradlew hibernate-filter-plugin:run
+    
+## Use plugin in your application
 
 Add dependency in build.gradle:
 
