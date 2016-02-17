@@ -1,15 +1,14 @@
 package test
 
-class FilterTests extends GroovyTestCase {
+import grails.test.spock.IntegrationSpec
 
-	def sessionFactory
+class FilterSpec extends IntegrationSpec {
 
-	protected void setUp() {
-		super.setUp()
+	def setup() {
 
 		Foo enabledFoo = new Foo(name:'enabledFoo', enabled: true)
 		enabledFoo.addToBars new Bar(name:'enabledBar', enabled: true)
-		enabledFoo.addToBars new Bar(name:'diabledBar', enabled: false)
+		enabledFoo.addToBars new Bar(name:'disabledBar', enabled: false)
 		enabledFoo.save()
 
 		Foo disabledFoo = new Foo(name:'disabledFoo', enabled: true)
@@ -19,45 +18,44 @@ class FilterTests extends GroovyTestCase {
 
 		Foo2 enabledFoo2 = new Foo2(name:'enabledFoo2', enabled: true, wahoo: 'wahoo1')
 		enabledFoo2.addToBars new Bar(name:'enabledBar', enabled: true)
-		enabledFoo2.addToBars new Bar(name:'diabledBar', enabled: false)
+		enabledFoo2.addToBars new Bar(name:'disabledBar', enabled: false)
 		enabledFoo2.save()
 
-		Foo disabledFoo2 = new Foo2(name:'disabledFoo2', enabled: true, wahoo: 'wahoo2')
-		disabledFoo.addToBars new Bar(name:'enabled_bar', enabled: true)
-		disabledFoo.addToBars new Bar(name:'disabled_bar', enabled: false)
-		disabledFoo.save()
-
-		sessionFactory.currentSession.flush()
-		sessionFactory.currentSession.clear()
+		Foo2 disabledFoo2 = new Foo2(name:'disabledFoo2', enabled: true, wahoo: 'wahoo2')
+        disabledFoo2.addToBars new Bar(name:'enabled_bar', enabled: true)
+        disabledFoo2.addToBars new Bar(name:'disabled_bar', enabled: false)
+        disabledFoo2.save()
 	}
 
-	void testDefaultFilters() {
+	void 'test default filters'() {
 		int enabledCount = Foo.countByEnabled(true)
 
+		expect:
 		Foo.withHibernateFilters {
 			def foos = Foo.list()
-			assertEquals enabledCount, foos.size()
+			assert enabledCount == foos.size()
 
 			for (Foo foo in foos) {
-				assertTrue foo.enabled
+				assert foo.enabled
 				for (Bar bar in foo.bars) {
-					assertTrue bar.enabled
+					assert bar.enabled
 				}
 			}
 		}
 	}
 
-	void testDefaultFiltersWithSubclass() {
+	void 'test default filters with subclass'() {
 		int enabledCount = Foo2.countByEnabled(true)
 
+		expect:
 		Foo2.withHibernateFilters {
 			def foos = Foo2.list()
-			assertEquals enabledCount, foos.size()
+			assert enabledCount == foos.size()
 
 			for (Foo2 foo in foos) {
-				assertTrue foo.enabled
+				assert foo.enabled
 				for (Bar bar in foo.bars) {
-					assertTrue bar.enabled
+					assert bar.enabled
 				}
 			}
 		}
