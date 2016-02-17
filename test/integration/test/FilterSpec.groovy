@@ -1,8 +1,11 @@
 package test
 
 import grails.test.spock.IntegrationSpec
+import org.hibernate.SessionFactory
 
 class FilterSpec extends IntegrationSpec {
+
+    SessionFactory sessionFactory
 
 	def setup() {
 
@@ -10,6 +13,7 @@ class FilterSpec extends IntegrationSpec {
         saveFoo new Foo(name:'disabledFoo', enabled: false)
         saveFoo new FooSubclass(name:'enabledSubclass', enabled: true, wahoo: 'wahoo1')
         saveFoo new FooSubclass(name:'disabledFooSubclass', enabled: false, wahoo: 'wahoo2')
+        sessionFactory.currentSession.clear()
 	}
 
     private saveFoo(Foo foo) {
@@ -24,14 +28,11 @@ class FilterSpec extends IntegrationSpec {
 		expect:
 		Foo.withHibernateFilters {
 			def foos = Foo.list()
-			assert enabledCount == foos.size()
+			enabledCount == foos.size()
 
-			for (Foo foo in foos) {
-				assert foo.enabled
-				for (Bar bar in foo.bars) {
-					assert bar.enabled
-				}
-			}
+            foos.each { foo ->
+                foo.bars.every { it.enabled }
+            }
 		}
 	}
 
@@ -40,15 +41,12 @@ class FilterSpec extends IntegrationSpec {
 
 		expect:
 		FooSubclass.withHibernateFilters {
-			def foos = FooSubclass.list()
-			assert enabledCount == foos.size()
+			def subFoos = FooSubclass.list()
+			enabledCount == subFoos.size()
 
-			for (FooSubclass foo in foos) {
-				assert foo.enabled
-				for (Bar bar in foo.bars) {
-					assert bar.enabled
-				}
-			}
+            subFoos.each { foo ->
+                foo.bars.every { it.enabled }
+            }
 		}
 	}
 }
