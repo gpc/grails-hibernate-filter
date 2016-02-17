@@ -1,11 +1,9 @@
 package org.grails.plugin.hibernate.filter
 
-import test.Foo
-
+import org.hibernate.internal.FilterConfiguration
 import grails.test.GrailsUnitTestCase
 
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
-import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Configuration.MappingsImpl
 import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.mapping.Collection
@@ -21,11 +19,11 @@ class HibernateFilterBuilderTests extends GrailsUnitTestCase {
 	void testBuilder() {
 
 		RootClass root = new RootClass()
-		Set set = new Set(new MappingsImpl(), root)
+		Set association = new Set(new MappingsImpl(), root)
 
 		HibernateFilterDomainConfiguration configuration = new HibernateFilterDomainConfiguration() {
 			PersistentClass getClassMapping(String entityName) { root }
-			Collection getCollectionMapping(String role) { set }
+			Collection getCollectionMapping(String role) { association }
 		}
 
 		new HibernateFilterBuilder(configuration, new DefaultGrailsDomainClass(Foo))
@@ -43,11 +41,12 @@ class HibernateFilterBuilderTests extends GrailsUnitTestCase {
 		assertTrue callback instanceof Closure
 		assertFalse callback()
 
-		assertEquals 5, root.filterMap.size()
-		assertEquals 'enabled=1', root.filterMap.fooEnabledFilter
-		assertEquals ':name = name', root.filterMap.fooNameFilter
-		assertEquals 'enabled=1', root.filterMap.closureDefaultFilter
-		assertEquals '(organisation_id = :oragnisationId or organisation_id in (:organisationIds))', root.filterMap.inListFilter
+        List<FilterConfiguration> filters = root.filters
+        assertEquals 5, filters.size()
+        assertEquals 'enabled=1', findFilterCondition(filters, 'fooEnabledFilter')
+        assertEquals ':name = name', findFilterCondition(filters, 'fooNameFilter')
+        assertEquals 'enabled=1', findFilterCondition(filters, 'closureDefaultFilter')
+        assertEquals '(organisation_id = :oragnisationId or organisation_id in (:organisationIds))', findFilterCondition(filters, 'inListFilter')
 
 		FilterDefinition fd = configuration.filterDefinitions.inListFilter
 		assertNotNull fd
@@ -56,9 +55,14 @@ class HibernateFilterBuilderTests extends GrailsUnitTestCase {
 		assertTrue fd.parameterTypes.oragnisationId instanceof LongType
 		assertTrue fd.parameterTypes.organisationIds instanceof LongType
 
-		assertEquals 1, set.filterMap.size()
-		assertEquals 'enabled=1', set.filterMap.barEnabledFilter
+        List<FilterConfiguration> associationFilters = association.filters
+		assertEquals 1, associationFilters.size()
+		assertEquals 'enabled=1', findFilterCondition(associationFilters, 'barEnabledFilter')
 	}
+
+    private String findFilterCondition(List<FilterConfiguration> filters, String filterName) {
+        filters.find { it.name == filterName }.condition
+    }
 
 	@Override
 	protected void setUp() {

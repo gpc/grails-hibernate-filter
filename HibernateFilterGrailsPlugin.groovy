@@ -1,11 +1,9 @@
-import org.codehaus.groovy.grails.commons.GrailsClass
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
-import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
 import org.grails.plugin.hibernate.filter.HibernateFilterUtils
 
 class HibernateFilterGrailsPlugin {
-	def version = '0.3.2'
-	def grailsVersion = '1.3 > *'
+	def version = '0.4.0'
+	def grailsVersion = '2.5 > *'
 	def loadAfter = ['controllers', 'hibernate']
 	def observe = ['*']
 	def pluginExcludes = ['grails-app/domain/**']
