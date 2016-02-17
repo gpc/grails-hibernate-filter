@@ -1,6 +1,5 @@
-package org.grails.plugin.hibernate.filter
+package grails.plugin.hibernate.filter
 
-import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
 import org.hibernate.Session
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

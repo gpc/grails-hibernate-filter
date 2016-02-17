@@ -1,5 +1,5 @@
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
-import org.grails.plugin.hibernate.filter.HibernateFilterUtils
+import grails.plugin.hibernate.filter.HibernateFilterUtils
 
 class HibernateFilterGrailsPlugin {
 	def version = '0.4.0'

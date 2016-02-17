@@ -1,6 +1,7 @@
-package org.grails.plugin.hibernate.filter
+package grails.plugin.hibernate.filter
 
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
+import test.domain.Foo
 import org.hibernate.cfg.Configuration.MappingsImpl
 import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.internal.FilterConfiguration
@@ -10,7 +11,6 @@ import org.hibernate.mapping.RootClass
 import org.hibernate.mapping.Set
 import org.hibernate.type.LongType
 import spock.lang.Specification
-import test.Foo
 
 class HibernateFilterBuilderSpec extends Specification {
 

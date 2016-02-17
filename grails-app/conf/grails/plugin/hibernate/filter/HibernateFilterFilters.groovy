@@ -1,4 +1,4 @@
-import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
+import grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
 
 class HibernateFilterFilters {
 

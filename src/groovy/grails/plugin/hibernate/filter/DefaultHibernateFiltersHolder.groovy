@@ -1,4 +1,4 @@
-package org.grails.plugin.hibernate.filter
+package grails.plugin.hibernate.filter
 
 /**
  * Used by HibernateFilterBuilder to store information from hibernateFilters blocks.

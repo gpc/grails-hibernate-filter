@@ -1,4 +1,4 @@
-package org.grails.plugin.hibernate.filter
+package grails.plugin.hibernate.filter
 
 class HibernateFilterDomainProxy {
 

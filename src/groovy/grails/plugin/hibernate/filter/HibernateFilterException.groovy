@@ -1,4 +1,4 @@
-package org.grails.plugin.hibernate.filter
+package grails.plugin.hibernate.filter
 
 /**
  * Thrown if there is a misconfiguration in a hibernateFilters block.

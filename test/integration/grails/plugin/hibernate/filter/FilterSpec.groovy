@@ -1,6 +1,8 @@
-package test
+package grails.plugin.hibernate.filter
 
 import grails.test.spock.IntegrationSpec
+import test.domain.Foo
+import test.domain.FooSubclass
 import org.hibernate.SessionFactory
 
 class FilterSpec extends IntegrationSpec {
