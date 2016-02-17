@@ -1,4 +1,4 @@
-package grails.plugin.hibernate.filter
+package org.grails.plugin.hibernate.filter
 
 import org.hibernate.Session
 import org.slf4j.Logger

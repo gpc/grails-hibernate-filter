@@ -1,4 +1,4 @@
-package grails.plugin.hibernate.filter
+package org.grails.plugin.hibernate.filter
 
 import org.codehaus.groovy.grails.commons.DefaultGrailsDomainClass
 import test.domain.Foo

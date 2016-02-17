@@ -1,4 +1,4 @@
-package grails.plugin.hibernate.filter
+package org.grails.plugin.hibernate.filter
 
 import grails.test.spock.IntegrationSpec
 import test.domain.Foo

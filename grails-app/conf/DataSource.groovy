@@ -1,4 +1,4 @@
-import grails.plugin.hibernate.filter.HibernateFilterDomainConfiguration
+import org.grails.plugin.hibernate.filter.HibernateFilterDomainConfiguration
 
 dataSource {
 	pooled = true
