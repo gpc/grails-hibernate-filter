@@ -12,7 +12,7 @@ class Foo {
 		barEnabledFilter(collection: 'bars', condition: 'enabled=1', default: true)
 		fooNameFilter(condition: ':name = name', types: 'string')
 		closureDefaultFilter(condition: 'enabled=1', default: { -> false })
-		inListFilter(condition: '(organisation_id = :oragnisationId or organisation_id in (:organisationIds))',
+		inListFilter(condition: '(organisation_id = :organisationId or organisation_id in (:organisationIds))',
 		             default: false,
 						 paramTypes: 'long, long')
 		multipleUseParamFilter(condition: 'id > :avoid or id < :avoid', types: 'long', default: false)
