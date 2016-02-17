@@ -13,8 +13,8 @@ class FilterSpec extends IntegrationSpec {
 
         saveFoo new Foo(name:'enabledFoo', enabled: true)
         saveFoo new Foo(name:'disabledFoo', enabled: false)
-        saveFoo new FooSubclass(name:'enabledSubclass', enabled: true, wahoo: 'wahoo1')
-        saveFoo new FooSubclass(name:'disabledFooSubclass', enabled: false, wahoo: 'wahoo2')
+        saveFoo new FooSubclass(name:'enabledSubclass', enabled: true)
+        saveFoo new FooSubclass(name:'disabledFooSubclass', enabled: false)
         sessionFactory.currentSession.clear()
 	}
 
