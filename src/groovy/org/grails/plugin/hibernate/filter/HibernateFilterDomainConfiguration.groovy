@@ -17,11 +17,12 @@ class HibernateFilterDomainConfiguration extends GrailsAnnotationConfiguration {
 
 	@Override
 	protected void secondPassCompile() throws MappingException {
+
+		super.secondPassCompile()
+
 		if (configLocked) {
 			return
 		}
-
-		super.secondPassCompile()
 
 		for (domainClass in grailsApplication.domainClasses) {
 			def filters = domainClass.getPropertyValue('hibernateFilters')
