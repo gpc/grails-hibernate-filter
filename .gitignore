@@ -6,3 +6,7 @@
 plugin.xml
 .DS_Store
 /web-app/
+
+*.iml
+.classpath
+.project
