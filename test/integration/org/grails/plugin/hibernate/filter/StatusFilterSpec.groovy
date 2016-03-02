@@ -41,4 +41,21 @@ class StatusFilterSpec extends IntegrationSpec {
         then:
         problems.size() == 1
     }
+
+    @Issue('GPHIBERNATEFILTER-20')
+    void 'collection filters are incorrectly applied to join table'() {
+
+        // enable the collection filters in each class
+        Problem.enableHibernateFilter('collectionFilter')
+        Condition.enableHibernateFilter('collectionFilter')
+
+        when:
+        List<Problem> problems = Problem.executeQuery("""
+                SELECT  p
+                FROM    ${Problem.simpleName} p
+                JOIN    p.conditions""")
+
+        then:
+        problems.size() == 1
+    }
 }
