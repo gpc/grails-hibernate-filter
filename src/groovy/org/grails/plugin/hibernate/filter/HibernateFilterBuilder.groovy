@@ -93,7 +93,7 @@ class HibernateFilterBuilder {
 		}
 
 		// now add the filter to the class or collection
-		entity.addFilter name, condition, false, null, null
+		entity.addFilter name, condition, true, null, null
 
 		// TODO: may be able to refactor this so that the factory creates the
 		// session with the filters rather than enabling them on each request

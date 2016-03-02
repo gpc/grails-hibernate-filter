@@ -1,23 +1,22 @@
 package org.grails.plugin.hibernate.filter
 
 import grails.test.spock.IntegrationSpec
+import spock.lang.Issue
 import test.domain.status.Condition
 import test.domain.status.Problem
 
 class StatusFilterSpec extends IntegrationSpec {
 
-    private problem
-    private condition
+    private Problem problem
+    private Condition condition
 
     def setup() {
         this.problem = new Problem(name: 'problem').save(failOnError: true)
-        this.condition = new Condition(name: 'condition').save(failOnError: true)
-        condition.addToProblems(problem)
+        this.condition = new Condition(name: 'condition').addToProblems(problem).save(failOnError: true)
 
         // enable the Hibernate filters
-        [Condition, Problem].each {
-            it.enableHibernateFilter('published')
-        }
+        Problem.enableHibernateFilter('statusFilter')
+        Condition.enableHibernateFilter('statusFilter')
     }
 
     void 'query condition only'() {
@@ -30,16 +29,16 @@ class StatusFilterSpec extends IntegrationSpec {
         Problem.count == 1
     }
 
+    @Issue('GPHIBERNATEFILTER-19')
     void 'query that joins problem and condition'() {
 
         when:
         List<Problem> problems = Problem.executeQuery("""
-                FROM            ${Problem.simpleName} p
-                JOIN            p.conditions as c
-                WHERE           c.id = ?""", [condition.id])
+                SELECT  p
+                FROM    ${Problem.simpleName} p
+                JOIN    p.conditions""")
 
         then:
         problems.size() == 1
-        problems[0].id == problem.id
     }
 }

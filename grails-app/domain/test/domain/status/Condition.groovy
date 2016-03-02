@@ -11,7 +11,7 @@ class Condition {
     ]
 
     static hibernateFilters = {
-        published(condition: "status = 1")
-        published(collection: 'problems')
+        statusFilter(condition: 'status = 1')
+        collectionFilter(condition: 'status = 1', collection: 'problems')
     }
 }
