@@ -1,6 +1,8 @@
-package test.domain.status
+package org.grails.plugin.hibernate.filter
 
 import grails.test.spock.IntegrationSpec
+import test.domain.status.Condition
+import test.domain.status.Problem
 
 class StatusFilterSpec extends IntegrationSpec {
 
