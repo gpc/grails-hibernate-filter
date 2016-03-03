@@ -13,8 +13,7 @@ class CollegeFilterSpec extends IntegrationSpec {
 
     def setup() {
         // because the filters in each domain class have the same name, it's only necessary to enable them for one class
-        Course.enableHibernateFilter('rootFilter')
-        Course.enableHibernateFilter('collectionFilter')
+        Course.enableHibernateFilter('collegeFilter')
     }
 
     void 'query owning entity of many-to-many relationship'() {

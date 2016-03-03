@@ -8,6 +8,6 @@ class Loan {
     static belongsTo = [borrower: Student]
 
     static hibernateFilters = {
-        rootFilter(condition: 'status = 1')
+        collegeFilter(condition: 'status = 1')
     }
 }

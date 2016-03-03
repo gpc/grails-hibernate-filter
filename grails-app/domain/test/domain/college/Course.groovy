@@ -10,7 +10,7 @@ class Course {
     ]
 
     static hibernateFilters = {
-        rootFilter(condition: 'status = 1')
-        collectionFilter(condition: 'status = 1', collection: 'students')
+        collegeFilter(condition: 'status = 1')
+        collegeFilter(condition: 'status = 1', collection: 'students')
     }
 }
