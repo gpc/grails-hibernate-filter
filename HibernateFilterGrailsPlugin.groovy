@@ -18,7 +18,7 @@ class HibernateFilterGrailsPlugin {
 	def developers = [[name: 'Burt Beckwith', email: 'beckwithb@vmware.com'],
 					  [name: 'Dónal Murtagh'],
 	                  [name: 'Alex Shneyderman', email: 'a.shneyderman@gmail.com']]
-	def issueManagement = [system: 'JIRA', url: 'http://jira.grails.org/browse/GPHIBERNATEFILTER']
+	def issueManagement = [system: 'GitHub', url: 'https://github.com/burtbeckwith/grails-hibernate-filter/issues']
 	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']
 
 	def doWithDynamicMethods = { ctx ->
