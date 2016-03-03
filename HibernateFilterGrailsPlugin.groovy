@@ -16,6 +16,7 @@ class HibernateFilterGrailsPlugin {
 
 	def license = 'APACHE'
 	def developers = [[name: 'Burt Beckwith', email: 'beckwithb@vmware.com'],
+					  [name: 'Dónal Murtagh'],
 	                  [name: 'Alex Shneyderman', email: 'a.shneyderman@gmail.com']]
 	def issueManagement = [system: 'JIRA', url: 'http://jira.grails.org/browse/GPHIBERNATEFILTER']
 	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']

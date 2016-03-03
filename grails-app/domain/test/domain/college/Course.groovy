@@ -11,6 +11,6 @@ class Course {
 
     static hibernateFilters = {
         collegeFilter(condition: 'status = 1')
-        collegeFilter(condition: 'status = 1', collection: 'students')
+        collegeFilter(collection: 'students')
     }
 }
