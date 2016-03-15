@@ -42,7 +42,7 @@ class CollegeFilterSpec extends IntegrationSpec {
         new Course(name: 'course')
                 .addToStudents(name: 'valid', status: 1)
                 .addToStudents(name: 'invalid', status: 0)
-                .save(failOnError: true)
+                .save(failOnError: true, flush: true)
 
         sessionFactory.currentSession.clear()
 
@@ -57,11 +57,11 @@ class CollegeFilterSpec extends IntegrationSpec {
     @Issue('https://github.com/burtbeckwith/grails-hibernate-filter/issues/9')
     void 'query many-to-many relationship with HQL'() {
 
-        new Course(name: 'invalidCourse', status: 0).save(failOnError: true)
+        new Course(name: 'invalidCourse', status: 0).save(failOnError: true, flush: true)
         new Course(name: 'validCourse')
                 .addToStudents(name: 'valid', status: 1)
                 .addToStudents(name: 'invalid', status: 0)
-                .save(failOnError: true)
+                .save(failOnError: true, flush: true)
 
         sessionFactory.currentSession.clear()
 
@@ -75,6 +75,23 @@ class CollegeFilterSpec extends IntegrationSpec {
         courses.size() == 1
         courses[0].name == 'validCourse'
         courses[0].students.size() == 1
+    }
+
+    @Issue('https://github.com/burtbeckwith/grails-hibernate-filter/issues/9')
+    void 'query unidirectional one-to-many relationship'() {
+
+        new Student(name: 'Mark')
+                .addToPens(name: 'valid pen', status: 1)
+                .addToPens(name: 'invalid pen', status: 0)
+                .save(failOnError: true, flush: true)
+
+        sessionFactory.currentSession.clear()
+
+        when:
+        def student = Student.findByName('Mark')
+
+        then:
+        student.pens.size() == 1
     }
 
     void 'query one-to-many relationship with HQL'() {

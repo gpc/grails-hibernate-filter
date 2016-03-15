@@ -9,11 +9,13 @@ class Student {
 
     static hasMany = [
             courses: Course,
-            loans: Loan
+            loans: Loan,
+            pens: Pen
     ]
 
     static hibernateFilters = {
         collegeFilter()
         collegeFilter(collection: 'loans')
+        collegeFilter(collection: 'pens', joinTable: true)
     }
 }
