@@ -10,3 +10,4 @@ plugin.xml
 *.iml
 .classpath
 .project
+.slcache/
