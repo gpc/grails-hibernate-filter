@@ -4,6 +4,7 @@ import grails.util.Metadata
 
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Mappings
+import org.hibernate.cfg.Configuration
 import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.mapping.Collection
 import org.hibernate.type.TypeFactory
@@ -19,10 +20,10 @@ class HibernateFilterBuilder {
 	private boolean grails1 = Metadata.current.getGrailsVersion().startsWith('1')
 	private Mappings mappings
 
-	HibernateFilterDomainConfiguration configuration
+	Configuration configuration
 	GrailsDomainClass domainClass
 
-	HibernateFilterBuilder(HibernateFilterDomainConfiguration configuration, GrailsDomainClass domainClass) {
+	HibernateFilterBuilder(Configuration configuration, GrailsDomainClass domainClass) {
 		this.configuration = configuration
 		this.domainClass = domainClass
 		mappings = configuration.createMappings()
