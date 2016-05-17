@@ -5,6 +5,7 @@ import grails.util.Metadata
 import org.codehaus.groovy.grails.commons.GrailsDomainClass
 import org.hibernate.cfg.Mappings
 import org.hibernate.engine.spi.FilterDefinition
+import org.hibernate.mapping.Collection
 import org.hibernate.type.TypeFactory
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -92,8 +93,15 @@ class HibernateFilterBuilder {
 			}
 		}
 
+        def filterArgs = [name, condition, true, null, null]
+
 		// now add the filter to the class or collection
-		entity.addFilter name, condition, false, null, null
+		if (entity instanceof Collection && options.joinTable) {
+			entity.addManyToManyFilter(*filterArgs)
+
+		} else {
+			entity.addFilter(*filterArgs)
+		}
 
 		// TODO: may be able to refactor this so that the factory creates the
 		// session with the filters rather than enabling them on each request
