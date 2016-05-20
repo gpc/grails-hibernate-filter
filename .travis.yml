@@ -1,0 +1,15 @@
+sudo: false
+
+language: groovy
+
+jdk:
+- oraclejdk7
+
+branches:
+  only:
+    - master
+
+before_script:
+  - mysql -e 'create database hibernate_filter;'
+
+script: ./grailsw clean && yes | ./grailsw refresh-dependencies && ./grailsw test-app
