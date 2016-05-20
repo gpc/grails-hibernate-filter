@@ -1,4 +1,4 @@
-# grails-hibernate-filter
+[![Build Status](https://travis-ci.org/gpc/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/gpc/grails-hibernate-filter)
 
 This repository contains the source code for the Grails 1.X and 2.X versions of the Hibernate Filter plugin. Documentation is [available here](https://grails.org/plugin/hibernate-filter).
 
