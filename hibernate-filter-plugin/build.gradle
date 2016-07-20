@@ -72,7 +72,10 @@ task wrapper(type: Wrapper) {
 }
 
 bintray {
+    user = project.properties.containsKey('user') ? property('user') : ''
+    key = project.properties.containsKey('key') ? property('key') : ''
     pkg {
+        repo = 'grails-plugins'
         userOrg = ''
         issueTrackerUrl = "https://github.com/piotrchowaniec/$project.name/issues"
         vcsUrl = "https://github.com/piotrchowaniec/$project.name"
