@@ -1,19 +1,12 @@
 package org.grails.plugin.hibernate.filter
 
-import org.grails.orm.hibernate.cfg.GrailsAnnotationConfiguration
-import grails.core.GrailsApplication
+import grails.core.GrailsDomainClass
+import grails.util.Holders
+import org.grails.orm.hibernate.cfg.HibernateMappingContextConfiguration
 import org.hibernate.MappingException
 
-class HibernateFilterDomainConfiguration extends GrailsAnnotationConfiguration {
-
-	private GrailsApplication grailsApplication
+class HibernateFilterDomainConfiguration extends HibernateMappingContextConfiguration {
 	private boolean configLocked
-
-	@Override
-	void setGrailsApplication(GrailsApplication grailsApplication) {
-		super.setGrailsApplication grailsApplication
-		this.grailsApplication = grailsApplication
-	}
 
 	@Override
 	protected void secondPassCompile() throws MappingException {
@@ -23,8 +16,11 @@ class HibernateFilterDomainConfiguration extends GrailsAnnotationConfiguration {
 
 		super.secondPassCompile()
 
-		for (domainClass in grailsApplication.domainClasses) {
-			def filters = domainClass.getPropertyValue('hibernateFilters')
+        def application = Holders.grailsApplication
+
+        for (aClass in application.getArtefacts('Domain')) {
+            def domainClass = (GrailsDomainClass) aClass
+            def filters = domainClass.getPropertyValue('hibernateFilters')
 			if (filters instanceof Closure) {
 				new HibernateFilterBuilder(this, domainClass)
 			}

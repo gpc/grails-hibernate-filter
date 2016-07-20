@@ -27,13 +27,13 @@ You can publish it to your maven local repository using:
 
 To run example application use command:
 
-    ./gradlew hibernate-filter-plugin:run
+    ./gradlew hibernate-filter-example:bootRun
     
 ## Use plugin in your application
 
 Add dependency in build.gradle:
 
-    compile "org.grails.plugins:grails-hibernate-filter:<version_number>"
+    compile "org.grails.plugins:grails-hibernate-filter:0.2.0"
     
 Configure dataSource in application.yml
 
