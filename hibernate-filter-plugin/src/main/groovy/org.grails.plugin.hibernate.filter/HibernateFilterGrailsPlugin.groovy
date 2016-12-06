@@ -5,12 +5,10 @@ import grails.plugins.*
 import groovy.transform.CompileStatic
 import org.grails.core.artefact.DomainClassArtefactHandler
 
-@CompileStatic
-class HibernateFilterGrailsPlugin extends Plugin
-{
+class HibernateFilterGrailsPlugin extends Plugin {
 
 	// the version or versions of Grails the plugin is designed for
-	def grailsVersion = "3.0.3 > *"
+	def grailsVersion = "3.2.3 > *"
 	def loadAfter = ['controllers', 'hibernate']
 	def observe = ['*']
 	def pluginExcludes = []
@@ -25,7 +23,8 @@ class HibernateFilterGrailsPlugin extends Plugin
 	def developers = [
 			[name: 'Burt Beckwith', email: 'beckwithb@vmware.com'],
 			[name: 'Alex Shneyderman', email: 'a.shneyderman@gmail.com'],
-			[name: 'Piotr Chowaniec', email: 'piotr.chowaniec@gmail.com']]
+			[name: 'Piotr Chowaniec', email: 'piotr.chowaniec@gmail.com'],
+			[name: 'Alex Kramer', email: 'ackramer19@gmail.com']]
 	def issueManagement = [system: 'JIRA', url: 'http://jira.grails.org/browse/GPHIBERNATEFILTER']
 	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']
 	def profiles = ['web']
@@ -42,4 +41,8 @@ class HibernateFilterGrailsPlugin extends Plugin
 			HibernateFilterUtils.addDomainProxies artefactClass
 		}
 	}
+
+	Closure doWithSpring() {{ ->
+		hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory)
+	}}
 }

@@ -3,7 +3,7 @@ grails-hibernate-filter
 
 # Description
 This is a fork of the original [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) 
-created from fork [appcela/grails-hibernate-plugin](https://github.com/appcela/grails-hibernate-filter) 
+created from fork [fingo/grails-hibernate-plugin](https://github.com/fingo/grails-hibernate-filter) 
 to make it work with the Grails 3 and Hibernate 5 and GORM 6.
 
 This repo contains two projects:

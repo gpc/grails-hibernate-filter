@@ -1,6 +1,6 @@
 ---
 grails:
-    profile: web-plugin
+    profile: plugin
     codegen:
         defaultPackage: org.grails.plugin.hibernate.filter
 info:
