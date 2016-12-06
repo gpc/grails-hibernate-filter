@@ -2,7 +2,6 @@ package org.grails.plugin.hibernate.filter
 
 import grails.core.GrailsClass
 import grails.plugins.*
-import groovy.transform.CompileStatic
 import org.grails.core.artefact.DomainClassArtefactHandler
 
 class HibernateFilterGrailsPlugin extends Plugin {
