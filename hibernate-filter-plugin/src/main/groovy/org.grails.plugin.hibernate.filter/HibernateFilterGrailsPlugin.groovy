@@ -28,8 +28,7 @@ class HibernateFilterGrailsPlugin extends Plugin {
 	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']
 	def profiles = ['web']
 
-	void doWithDynamicMethods()
-	{
+	void doWithDynamicMethods() {
 		for( GrailsClass dc in grailsApplication.getArtefacts( DomainClassArtefactHandler.TYPE ) )
 		{
 			HibernateFilterUtils.addDomainClassMethods dc.clazz, getApplicationContext()
@@ -40,8 +39,4 @@ class HibernateFilterGrailsPlugin extends Plugin {
 			HibernateFilterUtils.addDomainProxies artefactClass
 		}
 	}
-
-	Closure doWithSpring() {{ ->
-		hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory)
-	}}
 }

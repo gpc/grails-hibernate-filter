@@ -1,3 +1,5 @@
+package hibernate.filter.example
+
 import hibernate.filter.example.User
 
 class BootStrap {

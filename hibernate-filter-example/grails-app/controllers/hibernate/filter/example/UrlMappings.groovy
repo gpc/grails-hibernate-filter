@@ -1,3 +1,5 @@
+package hibernate.filter.example
+
 class UrlMappings {
 
     static mappings = {
