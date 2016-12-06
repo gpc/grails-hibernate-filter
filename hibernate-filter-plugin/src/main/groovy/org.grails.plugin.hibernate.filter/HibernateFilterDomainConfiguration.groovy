@@ -2,30 +2,27 @@ package org.grails.plugin.hibernate.filter
 
 import grails.core.GrailsDomainClass
 import grails.util.Holders
-import org.grails.orm.hibernate.cfg.HibernateMappingContextConfiguration
 import org.hibernate.MappingException
+import org.hibernate.boot.spi.InFlightMetadataCollector
+import org.hibernate.cfg.SecondPass
 
-class HibernateFilterDomainConfiguration extends HibernateMappingContextConfiguration {
-	private boolean configLocked
+class HibernateFilterDomainConfiguration implements SecondPass {
 
-	@Override
-	protected void secondPassCompile() throws MappingException {
-		if (configLocked) {
-			return
-		}
+    protected InFlightMetadataCollector mappings
 
-		super.secondPassCompile()
+    public HibernateFilterDomainConfiguration(InFlightMetadataCollector mappings) {
+        this.mappings = mappings
+    }
 
-        def application = Holders.grailsApplication
+	public void doSecondPass(Map persistentClasses) throws MappingException {
+		def application = Holders.grailsApplication
 
-        for (aClass in application.getArtefacts('Domain')) {
-            def domainClass = (GrailsDomainClass) aClass
-            def filters = domainClass.getPropertyValue('hibernateFilters')
+		for (aClass in application.getArtefacts('Domain')) {
+			def domainClass = (GrailsDomainClass) aClass
+			def filters = domainClass.getPropertyValue('hibernateFilters')
 			if (filters instanceof Closure) {
-				new HibernateFilterBuilder(this, domainClass)
+				new HibernateFilterBuilder(mappings, domainClass, persistentClasses.get(domainClass.fullName))
 			}
 		}
-
-		configLocked = true
 	}
 }

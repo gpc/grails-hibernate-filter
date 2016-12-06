@@ -4,7 +4,7 @@ grails-hibernate-filter
 # Description
 This is a fork of the original [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) 
 created from fork [appcela/grails-hibernate-plugin](https://github.com/appcela/grails-hibernate-filter) 
-to make it work with the Grails 3 and Hibernate 4.
+to make it work with the Grails 3 and Hibernate 5 and GORM 6.
 
 This repo contains two projects:
   
@@ -44,4 +44,4 @@ Configure dataSource in application.yml
 Please refer to the official [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) for usage.
 
 # Continuous integration server
-[![Build Status](https://travis-ci.org/fingo/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/fingo/grails-hibernate-filter)
+[![Build Status](https://travis-ci.org/alexkramer/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/fingo/grails-hibernate-filter)
