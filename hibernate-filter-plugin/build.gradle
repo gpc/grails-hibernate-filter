@@ -71,7 +71,7 @@ bintray {
         key = ''
         userOrg = 'goodstartgenetics' //publish to an organization
         repo = 'grails3-plugins'
-        name = "$project.name"
+        name = "grails-hibernate-filter"
         issueTrackerUrl = "https://github.com/alexkramer/grails-hibernate-filter/issues"
         vcsUrl = "https://github.com/alexkramer/grails-hibernate-filter"
         version {
