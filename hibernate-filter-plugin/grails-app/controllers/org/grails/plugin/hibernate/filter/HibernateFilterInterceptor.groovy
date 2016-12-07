@@ -1,8 +1,12 @@
 package org.grails.plugin.hibernate.filter
 
+import groovy.transform.CompileStatic
+import org.hibernate.SessionFactory
+
+@CompileStatic
 class HibernateFilterInterceptor {
 
-    def sessionFactory
+    SessionFactory sessionFactory
 
     HibernateFilterInterceptor() {
         matchAll()
