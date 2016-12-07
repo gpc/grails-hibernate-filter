@@ -64,3 +64,30 @@ dependencies {
 task wrapper(type: Wrapper) {
     gradleVersion = gradleWrapperVersion
 }
+
+bintray {
+    pkg {
+        user = ''
+        key = ''
+        userOrg = 'goodstartgenetics' //publish to an organization
+        repo = 'grails3-plugins'
+        name = "$project.name"
+        issueTrackerUrl = "https://github.com/alexkramer/grails-hibernate-filter/issues"
+        vcsUrl = "https://github.com/alexkramer/grails-hibernate-filter"
+        version {
+            attributes = ['grails-plugin': "$project.group:$project.name"]
+            name = project.version
+        }
+    }
+}
+
+grailsPublish {
+    userOrg = 'goodstartgenetics'
+    githubSlug = 'alexkramer/grails-hibernate-filter'
+    license {
+        name = 'Apache-2.0'
+    }
+    title = 'Grails Hibernate Filter Plugin'
+    desc = '''Provides utilities to define hibernate filters on classes and collections.'''
+    developers = [ alexkramer: 'Alex Kramer']
+}
