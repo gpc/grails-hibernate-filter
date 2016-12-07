@@ -16,6 +16,6 @@ class HibernateFilterBinder implements MetadataContributor {
      * @param jandexIndex The Jandex index
      */
     public void contribute(InFlightMetadataCollector metadataCollector, IndexView jandexIndex) {
-        metadataCollector.addSecondPass(new HibernateFilterDomainConfiguration(metadataCollector))
+        metadataCollector.addSecondPass(new HibernateFilterSecondPass(metadataCollector))
     }
 }

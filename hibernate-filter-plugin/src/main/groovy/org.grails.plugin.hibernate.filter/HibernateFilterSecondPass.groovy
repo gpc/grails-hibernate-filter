@@ -6,11 +6,11 @@ import org.hibernate.MappingException
 import org.hibernate.boot.spi.InFlightMetadataCollector
 import org.hibernate.cfg.SecondPass
 
-class HibernateFilterDomainConfiguration implements SecondPass {
+class HibernateFilterSecondPass implements SecondPass {
 
     protected InFlightMetadataCollector mappings
 
-    public HibernateFilterDomainConfiguration(InFlightMetadataCollector mappings) {
+    public HibernateFilterSecondPass(InFlightMetadataCollector mappings) {
         this.mappings = mappings
     }
 

@@ -23,7 +23,7 @@
 //		RootClass root = new RootClass()
 //		Set set = new Set(new Configuration().createMappings(), root)
 //
-//		HibernateFilterDomainConfiguration configuration = new HibernateFilterDomainConfiguration() {
+//		HibernateFilterSecondPass configuration = new HibernateFilterSecondPass() {
 //			PersistentClass getClassMapping(String entityName) { root }
 //			Collection getCollectionMapping(String role) { set }
 //		}

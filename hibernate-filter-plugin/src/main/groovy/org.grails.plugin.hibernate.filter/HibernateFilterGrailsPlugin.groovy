@@ -3,6 +3,7 @@ package org.grails.plugin.hibernate.filter
 import grails.core.GrailsClass
 import grails.plugins.*
 import org.grails.core.artefact.DomainClassArtefactHandler
+import org.hibernate.SessionFactory
 
 class HibernateFilterGrailsPlugin extends Plugin {
 
@@ -29,14 +30,20 @@ class HibernateFilterGrailsPlugin extends Plugin {
 	def profiles = ['web']
 
 	void doWithDynamicMethods() {
-		for( GrailsClass dc in grailsApplication.getArtefacts( DomainClassArtefactHandler.TYPE ) )
-		{
+		for( GrailsClass dc in grailsApplication.getArtefacts( DomainClassArtefactHandler.TYPE ) ) {
 			HibernateFilterUtils.addDomainClassMethods dc.clazz, getApplicationContext()
 		}
 
-		for( Class artefactClass in grailsApplication.allArtefacts )
-		{
+		for( Class artefactClass in grailsApplication.allArtefacts ) {
 			HibernateFilterUtils.addDomainProxies artefactClass
 		}
 	}
+
+    Closure doWithSpring() {{->
+        hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory)
+
+        hibernateFilterInterceptor(HibernateFilterInterceptor) {
+            sessionFactory = sessionFactory
+        }
+    }}
 }
