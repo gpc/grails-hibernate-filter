@@ -4,7 +4,7 @@ grails-hibernate-filter
 # Description
 This is a fork of the original [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) 
 created from fork [fingo/grails-hibernate-plugin](https://github.com/fingo/grails-hibernate-filter) 
-to make it work with the Grails 3 and Hibernate 5 and GORM 6.
+to make it work with Grails 3.2.3 and above, Hibernate 5, and GORM 6.
 
 This repo contains two projects:
   
@@ -29,19 +29,15 @@ To run example application use command:
 
     ./gradlew hibernate-filter-example:bootRun
     
-## Use plugin in your application
+## Installation
 
 Add dependency in build.gradle:
 
-    compile "org.grails.plugins:grails-hibernate-filter:0.2.0"
-    
-Configure dataSource in application.yml
-
-    configClass: org.grails.plugin.hibernate.filter.HibernateFilterDomainConfiguration
+    compile "org.grails.plugins:grails-hibernate-filter:0.3.0"
 
 # Usage
 
 Please refer to the official [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) for usage.
 
 # Continuous integration server
-[![Build Status](https://travis-ci.org/alexkramer/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/fingo/grails-hibernate-filter)
+[![Build Status](https://travis-ci.org/alexkramer/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/alexkramer/grails-hibernate-filter)
