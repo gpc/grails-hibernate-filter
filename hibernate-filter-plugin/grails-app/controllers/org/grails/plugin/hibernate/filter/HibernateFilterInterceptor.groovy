@@ -1,19 +1,19 @@
 package org.grails.plugin.hibernate.filter
 
-import org.grails.plugin.hibernate.filter.DefaultHibernateFiltersHolder
+import org.hibernate.SessionFactory
 
 class HibernateFilterInterceptor {
 
-    def sessionFactory
+    SessionFactory sessionFactory
 
     HibernateFilterInterceptor() {
-        match(controller: '*', action: '*')
+        matchAll()
     }
 
     boolean before() {
         def session = sessionFactory.currentSession
-        for (String name in DefaultHibernateFiltersHolder.defaultFilters) {
-            session.enableFilter name
+        DefaultHibernateFiltersHolder.defaultFilters.each {
+            session.enableFilter it
         }
         true
     }
