@@ -33,7 +33,13 @@ To run example application use command:
 
 Add dependency in build.gradle:
 
-    compile "org.grails.plugins:grails-hibernate-filter:0.5.0"
+    repositories {
+        maven { url "https://dl.bintray.com/goodstartgenetics/grails3-plugins/" }
+    }
+    
+    dependencies {
+        compile "org.grails.plugins:hibernate-filter-plugin:0.5.1"
+    }
 
 # Usage
 
