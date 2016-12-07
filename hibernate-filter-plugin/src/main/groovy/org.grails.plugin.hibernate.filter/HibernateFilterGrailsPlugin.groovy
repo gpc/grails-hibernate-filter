@@ -3,7 +3,6 @@ package org.grails.plugin.hibernate.filter
 import grails.core.GrailsClass
 import grails.plugins.*
 import org.grails.core.artefact.DomainClassArtefactHandler
-import org.hibernate.SessionFactory
 
 class HibernateFilterGrailsPlugin extends Plugin {
 
@@ -25,8 +24,8 @@ class HibernateFilterGrailsPlugin extends Plugin {
 			[name: 'Alex Shneyderman', email: 'a.shneyderman@gmail.com'],
 			[name: 'Piotr Chowaniec', email: 'piotr.chowaniec@gmail.com'],
 			[name: 'Alex Kramer', email: 'ackramer19@gmail.com']]
-	def issueManagement = [system: 'JIRA', url: 'http://jira.grails.org/browse/GPHIBERNATEFILTER']
-	def scm = [url: 'https://github.com/burtbeckwith/grails-hibernate-filter']
+	def issueManagement = [system: 'GitHub', url: 'https://github.com/alexkramer/grails-hibernate-filter/issues']
+	def scm = [url: 'https://github.com/alexkramer/grails-hibernate-filter']
 	def profiles = ['web']
 
 	void doWithDynamicMethods() {
