@@ -43,7 +43,7 @@ Add dependency in build.gradle:
 
 # Usage
 
-Please refer to the official [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) for usage.
+Please refer to this project's [wiki](https://github.com/alexkramer/grails-hibernate-filter/wiki) for usage.
 
 # Continuous integration server
 [![Build Status](https://travis-ci.org/alexkramer/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/alexkramer/grails-hibernate-filter)
