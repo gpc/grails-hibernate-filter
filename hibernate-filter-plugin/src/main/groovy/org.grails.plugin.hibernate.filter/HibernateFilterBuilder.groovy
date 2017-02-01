@@ -6,6 +6,7 @@ import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.mapping.PersistentClass
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.hibernate.mapping.Collection
 
 /**
  * Add the filters from the domain closure.
@@ -91,7 +92,6 @@ class HibernateFilterBuilder {
         def filterArgs = [name, condition, true, [:], [:]]
         if (entity instanceof Collection && options.joinTable) {
             entity.addManyToManyFilter(*filterArgs)
-
         } else {
             entity.addFilter(*filterArgs)
         }

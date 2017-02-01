@@ -13,6 +13,10 @@ class Student {
             pens: Pen
     ]
 
+    static mapping = {
+        courses(joinTable: 'courses_students', key: 'student_id')
+    }
+
     static hibernateFilters = {
         collegeFilter(condition: 'status = 1')
         collegeFilter(condition: 'status = 1', collection: 'loans')

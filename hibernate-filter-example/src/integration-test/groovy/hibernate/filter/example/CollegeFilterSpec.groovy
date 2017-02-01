@@ -11,13 +11,8 @@ class CollegeFilterSpec extends Specification {
 
     SessionFactory sessionFactory
 
-    def setup() {
-        // because the filters in each domain class have the same name, it's only necessary to enable them for one class
-        Course.enableHibernateFilter('collegeFilter')
-    }
-
     void 'query owning entity of many-to-many relationship'() {
-
+        Course.enableHibernateFilter('collegeFilter')
         [0, 1].each { status ->
             new Course(name: 'course', status: status).save(failOnError: true)
         }
@@ -27,7 +22,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query owned entity of many-to-many relationship'() {
-
+        Student.enableHibernateFilter('collegeFilter')
         [0, 1].each { status ->
             new Student(name: 'student', status: status).save(failOnError: true)
         }
@@ -37,7 +32,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query association of many-to-many relationship'() {
-
+        Course.enableHibernateFilter('collegeFilter')
         new Course(name: 'course')
                 .addToStudents(name: 'valid', status: 1)
                 .addToStudents(name: 'invalid', status: 0)
@@ -54,7 +49,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query many-to-many relationship with HQL'() {
-
+        Course.enableHibernateFilter('collegeFilter')
         new Course(name: 'invalidCourse', status: 0).save(failOnError: true, flush: true)
         new Course(name: 'validCourse')
                 .addToStudents(name: 'valid', status: 1)
@@ -76,7 +71,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query unidirectional one-to-many relationship'() {
-
+        Student.enableHibernateFilter('collegeFilter')
         new Student(name: 'Mark')
                 .addToPens(name: 'valid pen', status: 1)
                 .addToPens(name: 'invalid pen', status: 0)
@@ -92,7 +87,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query one-to-many relationship with HQL'() {
-
+        Student.enableHibernateFilter('collegeFilter')
         new Student(name: 'invalid', status: 0).save(failOnError: true)
         def validStudent = new Student(name: 'valid').save(failOnError: true)
 
@@ -117,7 +112,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query owned entity of one-to-many relationship'() {
-
+        Student.enableHibernateFilter('collegeFilter')
         def borrower = new Student(name: 'Mark').save(failOnError: true)
 
         [0, 1].each { status ->
@@ -129,7 +124,7 @@ class CollegeFilterSpec extends Specification {
     }
 
     void 'query association of one-to-many relationship'() {
-
+        Student.enableHibernateFilter('collegeFilter')
         new Student(name: 'Mark')
                 .addToLoans(amount: 100, status: 1)
                 .addToLoans(amount: 200, status: 0)

@@ -68,7 +68,7 @@ dependencies {
     compile project(':hibernate-filter-plugin')
 /*
  *   In your project you should use dependency:
- *   compile 'org.grails.plugins:grails-hibernate-filter:0.2.0'
+ *   compile 'org.grails.plugins:grails-hibernate-filter:<latest version>'
  */
 
     console "org.grails:grails-console"
