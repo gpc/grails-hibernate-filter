@@ -14,8 +14,10 @@ class HibernateFilterInterceptor {
 
     boolean before() {
         def session = sessionFactory.currentSession
-        DefaultHibernateFiltersHolder.defaultFilters.each {
-            session.enableFilter it
+        if (session) {
+            DefaultHibernateFiltersHolder.defaultFilters.each {
+                session.enableFilter it
+            }
         }
         true
     }
