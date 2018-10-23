@@ -1,6 +1,7 @@
 package org.grails.plugin.hibernate.filter
 
 import grails.core.GrailsClass
+import grails.core.GrailsDomainClass
 import grails.plugins.*
 import org.grails.core.artefact.DomainClassArtefactHandler
 
