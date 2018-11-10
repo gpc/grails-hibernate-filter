@@ -1,6 +1,5 @@
 package hibernate.filter.example
 
-
 import grails.test.mixin.integration.Integration
 import grails.transaction.Rollback
 import org.grails.orm.hibernate.cfg.GrailsDomainBinder
