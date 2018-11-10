@@ -1,6 +1,7 @@
 package org.grails.plugin.hibernate.filter
 
 import grails.core.GrailsClass
+import grails.core.GrailsDomainClass
 import grails.plugins.*
 import org.grails.core.artefact.DomainClassArtefactHandler
 
@@ -39,7 +40,10 @@ class HibernateFilterGrailsPlugin extends Plugin {
 	}
 
     Closure doWithSpring() {{->
-        hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory)
+        def domainClasses = grailsApplication.getArtefacts(DomainClassArtefactHandler.TYPE)
+                .findAll { it.mappingStrategy != "none" && it.mappingStrategy == GrailsDomainClass.GORM }
+                .collect { it.getClazz() }
+        hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory, domainClasses as Class[])
 
         hibernateFilterInterceptor(HibernateFilterInterceptor) {
             sessionFactory = sessionFactory
