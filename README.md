@@ -38,7 +38,7 @@ Add dependency in build.gradle:
     }
     
     dependencies {
-        compile "org.grails.plugins:hibernate-filter-plugin:0.5.4"
+        compile "org.grails.plugins:hibernate-filter-plugin:0.5.5"
     }
 
 # Usage

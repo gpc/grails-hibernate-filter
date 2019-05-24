@@ -1,6 +1,7 @@
 package org.grails.plugin.hibernate.filter
 
 import grails.core.GrailsDomainClass
+import org.grails.core.artefact.DomainClassArtefactHandler
 import org.hibernate.boot.spi.InFlightMetadataCollector
 import org.hibernate.engine.spi.FilterDefinition
 import org.hibernate.mapping.PersistentClass
@@ -74,7 +75,7 @@ class HibernateFilterBuilder {
                 persistentClass
 
         if (entity == null) {
-            if (options.collection && !domainClass.isRoot()) {
+            if (options.collection && !isRoot(domainClass)) {
                 def clazz = domainClass.clazz.superclass
                 while (clazz != Object && !entity) {
                     entity = mappings.getCollectionBinding("${clazz.name}.$options.collection")
@@ -105,9 +106,14 @@ class HibernateFilterBuilder {
         }
 
         // store any domain alias proxies to be injected later
-        if (options.aliasDomain && domainClass.isRoot()) {
+        if (options.aliasDomain && isRoot(domainClass)) {
             DefaultHibernateFiltersHolder.addDomainAliasProxy(
                     new HibernateFilterDomainProxy(domainClass.referenceInstance, options.aliasDomain, name))
         }
+    }
+
+    boolean isRoot(GrailsDomainClass domainClass) {
+        final Class<?> superClass = domainClass.getClass().getSuperclass()
+        DomainClassArtefactHandler.isDomainClass(superClass) ? false : true
     }
 }
