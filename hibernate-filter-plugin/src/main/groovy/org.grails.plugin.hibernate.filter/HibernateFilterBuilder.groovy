@@ -113,7 +113,7 @@ class HibernateFilterBuilder {
     }
 
     boolean isRoot(GrailsDomainClass domainClass) {
-        final Class<?> superClass = domainClass.getClass().getSuperclass()
-        DomainClassArtefactHandler.isDomainClass(superClass) ? false : true
+        final Class<?> superClass = domainClass.class.superclass
+        !DomainClassArtefactHandler.isDomainClass(superClass)
     }
 }
