@@ -40,9 +40,9 @@ class HibernateFilterGrailsPlugin extends Plugin {
 	}
 
     Closure doWithSpring() {{->
-        def domainClasses = grailsApplication.getArtefacts(DomainClassArtefactHandler.TYPE)
-                .findAll { it.mappingStrategy != "none" && it.mappingStrategy == GrailsDomainClass.GORM }
-                .collect { it.getClazz() }
+		def domainClasses = grailsApplication.getArtefacts(DomainClassArtefactHandler.TYPE)
+				.collect() { GrailsClass cls -> cls.clazz }
+
         hibernateConnectionSourceFactory(HibernateFilterConnectionSourceFactory, domainClasses as Class[])
 
         hibernateFilterInterceptor(HibernateFilterInterceptor) {
