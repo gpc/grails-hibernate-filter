@@ -2,7 +2,7 @@
 grails:
   profile: web-plugin
   codegen:
-    defaultPackage: grails4pluginsample
+    defaultPackage: org.grails.plugin.hibernate
   gorm:
     reactor:
       # Whether to translate GORM events into Reactor events
@@ -30,9 +30,19 @@ spring:
         - '**/*.gson'
         - 'logback.groovy'
         - '*.properties'
-management:
-  endpoints:
-    enabled-by-default: false
+environments:
+  development:
+    management:
+      endpoints:
+        enabled-by-default: true
+        web:
+          base-path: '/actuator'
+          exposure:
+            include: '*'
+  production:
+    management:
+      endpoints:
+        enabled-by-default: false
 
 ---
 grails:
@@ -86,10 +96,6 @@ grails:
         scriptlet: html
         taglib: none
         staticparts: none
-management:
-  endpoints:
-    jmx:
-      unique-names: true
 
 ---
 hibernate:

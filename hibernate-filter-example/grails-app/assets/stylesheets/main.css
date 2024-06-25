@@ -75,8 +75,7 @@ img {
 
 .content h1 {
     border-bottom: 1px solid #CCCCCC;
-    margin: 0.8em 1em 0.3em;
-    padding: 0 0.25em;
+    padding: 0 0 1em 0;
 }
 
 .scaffold-list h1 {
@@ -101,9 +100,7 @@ img {
     color: #ffffff;
     clear: both;
     font-size: 1em;
-    margin-top: 1.5em;
-    padding: 1em;
-    padding-bottom: 2em;
+    padding: 2em 0;
     min-height: 1em;
 }
 
@@ -237,7 +234,7 @@ fieldset,
 label {
     cursor: pointer;
     display: inline-block;
-    margin: 0 0.25em 0 0;
+    margin: 0 0.5em 0 0;
 }
 
 input, select, textarea {
@@ -318,10 +315,8 @@ fieldset.embedded legend {
 
 .errors,
 .message {
-    font-size: 0.8em;
-    line-height: 2;
-    margin: 1em 2em;
-    padding: 0.25em;
+    margin: 1em 0;
+    padding: 0.5em;
 }
 
 .message {
@@ -389,7 +384,7 @@ input:invalid:focus, select:invalid:focus, textarea:invalid:focus {
 /* TABLES */
 
 table {
-    border-top: 1px solid #DFDFDF;
+    border: 1px solid #DFDFDF;
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 1em;

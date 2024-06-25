@@ -53,6 +53,16 @@ for Grails 4.x
             compile "org.grails.plugins:hibernate-filter-plugin:4.0-M2"
         }
 
+for Grails 5.x
+
+        repositories {
+            maven { url "https://maven.pkg.github.com/vsachinv/grails-hibernate-filter" }
+        }
+        
+        dependencies {
+            compile "org.grails.plugins:hibernate-filter-plugin:5.0-M1"
+        }
+
 # Usage
 
 Please refer to this project's [wiki](https://github.com/alexkramer/grails-hibernate-filter/wiki) for usage.

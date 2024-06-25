@@ -29,11 +29,8 @@ pre {
 /* customizing bootstrap nav bar */
 .navbar {
     margin-bottom: 0px;
-    padding-right: 110px;
 }
-.navbar .container {
-    margin: 10px;
-}
+
 .navbar-dark a {
     color: #ffffff !important;
     font-size: 18px !important;
@@ -522,22 +519,6 @@ h8 {
     color: #db4800
 }
 
-.row {
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 5%
-}
-
-.row:before, .row:after {
-    content: " ";
-    display: table
-}
-
-.row:after {
-    clear: both
-}
-
 .band {
     background: #4298b8;
     height: 400px;
@@ -559,16 +540,9 @@ h8 {
 }
 
 #content {
-    background: white
-}
-
-#content .row:before, #content .row:after {
-    content: " ";
-    display: table
-}
-
-#content .row:after {
-    clear: both
+    margin: 2em 0;
+    padding: 1em 0;
+    background: white;
 }
 
 #content .row > h1 {
@@ -581,7 +555,7 @@ h8 {
     width: 100%;
 }
 
-#content hr.row, #content hr.divider {
+#content hr.divider {
     border: 0 none;
     border-top: 1px solid #EEE;
     margin: 0 5%;
