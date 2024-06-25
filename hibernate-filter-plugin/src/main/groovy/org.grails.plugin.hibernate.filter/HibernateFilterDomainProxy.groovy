@@ -4,9 +4,9 @@ class HibernateFilterDomainProxy {
 
 	String filterName
 	String aliasName
-	def domainClassInstance
+	Object domainClassInstance
 
-	HibernateFilterDomainProxy(domainClassInstance, String aliasName, String filterName) {
+	HibernateFilterDomainProxy(Object domainClassInstance, String aliasName, String filterName) {
 		this.domainClassInstance = domainClassInstance
 		this.aliasName = aliasName
 		this.filterName = filterName
