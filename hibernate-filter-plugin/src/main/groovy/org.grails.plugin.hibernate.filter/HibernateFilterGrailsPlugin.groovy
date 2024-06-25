@@ -7,7 +7,7 @@ import org.grails.core.artefact.DomainClassArtefactHandler
 class HibernateFilterGrailsPlugin extends Plugin {
 
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "4.0.0 > *"
+    def grailsVersion = "6.2.0 > *"
     List loadAfter = ['hibernate']
     def observe = ['*']
     def pluginExcludes = []

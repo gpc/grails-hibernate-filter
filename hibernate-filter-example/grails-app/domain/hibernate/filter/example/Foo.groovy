@@ -8,10 +8,10 @@ class Foo {
     static hasMany = [bars: Bar]
 
     static hibernateFilters = {
-        fooEnabledFilter(condition: 'enabled=1', default: true, aliasDomain: 'EnabledFoo')
-        barEnabledFilter(collection: 'bars', condition: 'enabled=1', default: true)
+        fooEnabledFilter(condition: 'enabled=true', default: true, aliasDomain: 'EnabledFoo')
+        barEnabledFilter(collection: 'bars', condition: 'enabled=true', default: true)
         fooNameFilter(condition: ':name = name', types: 'string')
-        closureDefaultFilter(condition: 'enabled=1', default: { -> false })
+        closureDefaultFilter(condition: 'enabled=true', default: { -> false })
         inListFilter(condition: '(organisation_id = :oragnisationId or organisation_id in (:organisationIds))',
                 default: false,
                 paramTypes: 'long, long')
