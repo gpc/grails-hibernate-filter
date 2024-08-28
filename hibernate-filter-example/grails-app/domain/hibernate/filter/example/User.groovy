@@ -10,6 +10,10 @@ class User {
     boolean active = true
 
     static hibernateFilters = {
-        activeFilter(condition: 'active=1', default: true)
+        activeFilter(condition: 'active=true', default: true)
+    }
+
+    static mapping = {
+        table name: "USER_INFO"
     }
 }

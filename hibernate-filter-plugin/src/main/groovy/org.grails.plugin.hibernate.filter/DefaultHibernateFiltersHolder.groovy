@@ -1,8 +1,10 @@
 package org.grails.plugin.hibernate.filter
+import groovy.transform.CompileStatic
 
 /**
  * Used by HibernateFilterBuilder to store information from hibernateFilters blocks.
  */
+@CompileStatic
 class DefaultHibernateFiltersHolder {
 
 	static final List<String> defaultFilters = []

@@ -3,8 +3,8 @@ grails-hibernate-filter
 
 # Description
 This is a fork of the original [Grails Hibernate Filter Plugin](http://grails.org/plugin/hibernate-filter) 
-created from fork [fingo/grails-hibernate-plugin](https://github.com/fingo/grails-hibernate-filter) 
-to make it work with Grails 3.2.3 > *, Hibernate 5, and GORM 6.
+created from fork [alexkramer/grails-hibernate-filter](https://github.com/alexkramer/grails-hibernate-filter) 
+to make it work with Grails 4.0.0 > *, Hibernate 5, and GORM 7.
 
 This repo contains two projects:
   
@@ -33,6 +33,8 @@ To run example application use command:
 
 Add dependency in build.gradle:
 
+for Grails < 3.x
+
     repositories {
         maven { url "https://dl.bintray.com/goodstartgenetics/grails3-plugins/" }
     }
@@ -40,10 +42,27 @@ Add dependency in build.gradle:
     dependencies {
         compile "org.grails.plugins:hibernate-filter-plugin:0.5.5"
     }
+    
+for Grails 4.x    
+
+        repositories {
+            maven { url "https://maven.pkg.github.com/vsachinv/grails-hibernate-filter" }
+        }
+        
+        dependencies {
+            compile "org.grails.plugins:hibernate-filter-plugin:4.0-M2"
+        }
+
+for Grails 5.x
+
+        repositories {
+            maven { url "https://maven.pkg.github.com/vsachinv/grails-hibernate-filter" }
+        }
+        
+        dependencies {
+            compile "org.grails.plugins:hibernate-filter-plugin:5.0-M1"
+        }
 
 # Usage
 
 Please refer to this project's [wiki](https://github.com/alexkramer/grails-hibernate-filter/wiki) for usage.
-
-# Continuous integration server
-[![Build Status](https://travis-ci.org/alexkramer/grails-hibernate-filter.svg?branch=master)](https://travis-ci.org/alexkramer/grails-hibernate-filter)

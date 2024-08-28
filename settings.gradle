@@ -1,1 +1,14 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        maven { url "https://repo.grails.org/grails/core/" }
+        gradlePluginPortal()
+    }
+    plugins {
+        id "org.grails.grails-web" version "6.1.2"
+        id "org.grails.grails-gsp" version "6.1.2"
+        id "com.bertramlabs.asset-pipeline" version "4.3.0"
+        id "com.github.erdi.webdriver-binaries" version "3.2"
+    }
+}
 include 'hibernate-filter-plugin', 'hibernate-filter-example'
