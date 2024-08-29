@@ -1,0 +1,139 @@
+plugins {
+    id "groovy"
+    id "idea"
+    id "org.grails.grails-plugin"
+    id "application"
+    id "eclipse"
+    id "com.gorylenko.gradle-git-properties"
+    id "maven-publish"
+}
+
+group "org.grails.plugins"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://repo1.maven.org/maven2/" }
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+dependencies {
+    implementation("org.grails:grails-core")
+    implementation("org.grails:grails-logging")
+    implementation("org.grails:grails-plugin-databinding")
+    implementation("org.grails:grails-plugin-i18n")
+    implementation("org.grails:grails-plugin-interceptors")
+    implementation("org.grails:grails-plugin-rest")
+    implementation("org.grails:grails-plugin-services")
+    implementation("org.grails:grails-plugin-url-mappings")
+    implementation("org.grails:grails-web-boot")
+    implementation("org.grails.plugins:hibernate5")
+    implementation("org.springframework.boot:spring-boot-autoconfigure")
+    implementation("org.springframework.boot:spring-boot-starter-logging")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    compileOnly("io.micronaut:micronaut-inject-groovy")
+    console("org.grails:grails-console")
+    runtimeOnly("com.h2database:h2")
+    runtimeOnly("org.apache.tomcat:tomcat-jdbc")
+    testImplementation("io.micronaut:micronaut-inject-groovy")
+    testImplementation("org.grails:grails-gorm-testing-support")
+    testImplementation("org.spockframework:spock-core")
+    testImplementation("io.micronaut:micronaut-http-client")
+
+    implementation "org.hibernate:hibernate-core:5.6.15.Final"
+    implementation "org.hibernate:hibernate-ehcache:5.6.15.Final"
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion("11")
+}
+
+gitProperties {
+    keys = ['git.branch', 'git.commit.id', 'git.commit.time', 'git.commit.id.abbrev']
+    failOnNoGitDirectory = true
+    extProperty = 'gitProps' // git properties will be put in a map at project.ext.gitProps
+}
+
+generateGitProperties.outputs.upToDateWhen {
+    false
+} // make sure the generateGitProperties task always executes (even when git.properties is not changed)
+
+jar {
+    dependsOn generateGitProperties
+    manifest {
+        attributes("Built-By": System.getProperty("user.name"))
+        attributes(["Plugin-Version"        : version,
+                    "Plugin-Title"          : project.name,
+                    "Plugin-Build-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                    "Git-Commit"            : "${-> project.ext.gitProps['git.commit.id.abbrev']}",
+                    "Git-Branch"            : "${-> project.ext.gitProps['git.branch']}"])
+    }
+    from sourceSets.main.output
+    exclude 'git.properties'
+}
+
+task sourceJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+task packageJavadoc(type: Jar) {
+    from javadoc
+    classifier = 'javadoc'
+}
+
+task packageGroovydoc(type: Jar) {
+    from groovydoc
+    classifier = 'groovydoc'
+}
+
+tasks.withType(GroovyCompile) {
+    configure(groovyOptions) {
+        forkOptions.jvmArgs = ['-Xmx1024m']
+    }
+}
+// enable if you wish to package this plugin as a standalone application
+bootJar.enabled = false
+
+
+publishing {
+
+    publications {
+        mavenJar(MavenPublication) {
+            from components.java
+            artifact sourceJar
+            artifact packageJavadoc
+            artifact packageGroovydoc
+        }
+    }
+
+    repositories {
+
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/vsachinv/grails-hibernate-filter")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+        
+        maven {
+            name = "NexusRepo"
+            credentials {
+                username project.findProperty("nexusUsername") ?: System.getenv("NEXUS_USERNAME")
+                password project.findProperty("nexusPassword") ?: System.getenv("NEXUS_PASSWORD")
+            }
+            url project.findProperty("nexusUrl") ?: System.getenv("NEXUS_URL")
+            allowInsecureProtocol = project.findProperty("isNexusUrlInsecure") ? true : false
+        }
+
+    }
+}

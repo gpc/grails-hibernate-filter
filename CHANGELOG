@@ -1,0 +1,10 @@
+## Change Log
+
+### 0.2.0
+##### 2016-07-20
+- Upgraded Grails version to 3.1.9
+- Upgraded Gradle wrapper version to 2.14.1
+- Java version changed to 1.8
+- Removed dependency from `compile org.grails:grails-datastore-gorm-hibernate4:4.0.7.RELEASE`;
+ added `provided "org.grails.plugins:hibernate4"`
+- Fixed wrong command in README.md file

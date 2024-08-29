@@ -1,13 +1,13 @@
-/.settings
-/target/
-*.iws
-*.log
-*.zip
-plugin.xml
-.DS_Store
-/web-app/
-
+#IntelliJ IDEA files
+.idea/
+build/
 *.iml
+
+# Eclipse files
+target/
+.settings
 .classpath
 .project
-.slcache/
+
+#Gradle
+.gradle/

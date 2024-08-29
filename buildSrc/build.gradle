@@ -1,0 +1,13 @@
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "https://plugins.gradle.org/m2/" }
+    maven { url "https://repo.grails.org/grails/core" }
+}
+
+dependencies {
+    implementation("org.grails:grails-gradle-plugin:6.1.2")
+    implementation("org.grails.plugins:hibernate5:8.1.0")
+    implementation("com.bertramlabs.plugins:asset-pipeline-gradle:4.3.0")
+    implementation("com.gorylenko.gradle-git-properties:gradle-git-properties:2.4.2")
+}
